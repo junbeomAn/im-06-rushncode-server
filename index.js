@@ -1,13 +1,22 @@
-var express = require('express');
-var cors = require('cors');
-var path = require('path');
-var bodyParser = require('body-parser');
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const bodyParser = require('body-parser');
 
-var db = require('./db/index');
-var handleQ = require('./controller/question');
-var handleSign = require('./controller/signInSignUp');
+const requestHandle = require('./controller/requestHandler');
+const users = require('./db/tables/users');
+const questions = require('./db/tables/questions');
+const answers = require('./db/tables/answers');
+const childAnswers = require('./db/tables/childAnswers');
+const tags = require('./db/tables/tags');
+const q_tag = require('./db/tables/q_tag');
+const q_user = require('./db/tables/q_user');
+const posts = require('./db/tables/posts');
+const replies = require('./db/tables/replies');
+const childReplies = require('./db/tables/childReplies');
 
-var app = express();
+
+const app = express();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -16,16 +25,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, '/client/public')));
 
-app.get('/test', function (req, res) {
-    res.send('Hello World');
-})
 
-app.post('/signin', handleSign.signin);
-app.post('/signup', handleSign.signup);
-
-app.get('/getQlist', handleQ.getQlist);
-app.get('/question/:id', handleQ.getQuestion);
-app.post('/question', handleQ.postQuestion);
+requestHandle(app);
 
 app.listen(3001);
 console.log('listening, 3001');

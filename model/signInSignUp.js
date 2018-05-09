@@ -2,7 +2,7 @@ var db = require('../db/index');
 
 
 
-exports.checkUsername = (target, callback) => {
+exports.checkEmail = (target, callback) => {
     var sql = `SELECT * FROM users WHERE email='${target}'`;
 
     db.query(sql, function (err, result) {

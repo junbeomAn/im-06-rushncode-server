@@ -9,13 +9,13 @@ const signUp = (req, res) => {
     } = req.body;
     console.log('@@@@@@@', req.body);
 
-    model.checkUsername('asdf', (err, result) => {
+    model.checkEmail(email, (err, result) => {
         if (err) {
             console.log(err);
         } else {
             if (result.length !== 0) {
-                console.log('id 중복');
-                res.send(false)
+                console.log('email 중복');
+                res.send('exist')
             } else {
                 bcrypt.hash(password, null, null, function (err, hash) {
                     if (err) {

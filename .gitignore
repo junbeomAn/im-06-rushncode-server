@@ -23,5 +23,11 @@ yarn-error.log*
 # client folder
 /client
 
+<<<<<<< HEAD
 yarn.lock*
 package-lock.json*
+=======
+package-lock.json
+yarn.lock
+
+>>>>>>> ff26600116b4eebd3d82db16946b57bc752cecc3

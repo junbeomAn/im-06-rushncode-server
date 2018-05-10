@@ -1,7 +1,15 @@
+/*
+    POST /api/auth/signup
+    {
+        email,
+        username,
+        password
+    }
+*/
 const bcrypt = require('bcrypt-nodejs');
-const model = require('../../model/signInSignUp');
+const model = require('../../../model/signInSignUp');
 
-const signUp = (req, res) => {
+const signup = (req, res) => {
     const {
         email,
         username,
@@ -15,12 +23,16 @@ const signUp = (req, res) => {
         } else {
             if (result.length !== 0) {
                 console.log('email 중복');
-                res.send('exist')
+                res.send({
+                    message: 'email is exist'
+                })
             } else {
                 bcrypt.hash(password, null, null, function (err, hash) {
                     if (err) {
                         console.log(err);
-                        res.send();
+                        res.send({
+                            message: err
+                        });
                     } else {
                         console.log(hash);
                         const user = {
@@ -30,9 +42,14 @@ const signUp = (req, res) => {
                         }
                         model.saveUser(user, (err, result) => {
                             if (err) {
-                                res.send(err);
+                                res.send({
+                                    message: err
+                                });
                             } else {
-                                res.send(result)
+                                res.send({
+                                    message: 'complete signup',
+                                    data: result
+                                })
                             }
                         })
                     }
@@ -42,4 +59,4 @@ const signUp = (req, res) => {
     })
 }
 
-module.exports = signUp;
+module.exports = signup;

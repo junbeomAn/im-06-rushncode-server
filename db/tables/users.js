@@ -2,9 +2,9 @@ const db = require("../index");
 
 const sql = `CREATE TABLE IF NOT EXISTS users (
     id INTEGER AUTO_INCREMENT,
-    email VARCHAR(255), 
-    username VARCHAR(255), 
-    password VARCHAR(255),     
+    email VARCHAR(255) NOT NULL, 
+    username VARCHAR(255) NOT NULL, 
+    password VARCHAR(255) NOT NULL,     
     total_reward INTEGER DEFAULT 0, 
     verified BOOLEAN DEFAULT FALSE, 
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,

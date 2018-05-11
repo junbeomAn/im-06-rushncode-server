@@ -12,6 +12,7 @@ router.post('/post', postQuestion);
 router.get('/getlist', getList);
 router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
+router.post('/read', leaveChAnswer);
 
 
 router.post('/test', test);

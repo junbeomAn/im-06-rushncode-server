@@ -9,24 +9,18 @@
     }
 */
 
-const Promise = require("bluebird");
+const Promise = require('bluebird');
 
-const saveQuestion = Promise.promisify(require("../../../model/saveQuestion"));
-const checkUser = Promise.promisify(require("../../../model/checkUser"));
-const checkTag = Promise.promisify(require("../../../model/checkTag"));
-const checkQuestion = Promise.promisify(require("../../../model/checkQuestion"));
-const saveQnTag = Promise.promisify(require("../../../model/saveQnTag"));
-const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
-
-
-
+const saveQuestion = Promise.promisify(require('../../../model/saveQuestion'));
+const checkUser = Promise.promisify(require('../../../model/checkUser'));
+const checkTag = Promise.promisify(require('../../../model/checkTag'));
+const checkQuestion = Promise.promisify(require('../../../model/checkQuestion'));
+const saveQnTag = Promise.promisify(require('../../../model/saveQnTag'));
+const verifyToken = Promise.promisify(require('../../utillity/verifyToken'));
 
 const postQuestion = (req, res) => {
   const {
-    title,
-    body,
-    reward,
-    tags
+    title, body, reward, tags,
   } = req.body;
 
   const token = req.headers['x-access-token'] || req.query.token;
@@ -35,21 +29,21 @@ const postQuestion = (req, res) => {
   const data = {
     title,
     body,
-    reward
+    reward,
   };
 
   verifyToken(token).then((email) => {
-    checkUser(email).then(result => {
-      //console.log('@#@#@#@#@#@#####', result);
+    checkUser(email).then((result) => {
+      // console.log('@#@#@#@#@#@#####', result);
       const userID = result.id;
       saveQuestion(data, userID).then(() => {
-        checkQuestion(data, userID).then(resultID => {
-          console.log("result!@!@!@", resultID);
+        checkQuestion(data, userID).then((resultID) => {
+          console.log('result!@!@!@', resultID);
           const qID = resultID;
-          checkTag(tags).then(t => {
-            saveQnTag(t, qID).then(a => {
+          checkTag(tags).then((t) => {
+            saveQnTag(t, qID).then((a) => {
               console.log(a);
-              res.send("asdfasdfasdfasdf");
+              res.send('asdfasdfasdfasdf');
             });
           });
         });

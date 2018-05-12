@@ -1,21 +1,19 @@
-const mysql = require("mysql");
-
-
+const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "asdqwe123",
-  database: "rushNcode"
+  host: 'localhost',
+  user: 'root',
+  password: '5dnjfdlek!',
+  database: 'rushNcode',
 });
 
-connection.connect(function (err) {
+connection.connect((err) => {
   if (err) {
-    console.error("error connecting: " + err.stack);
+    console.error(`error connecting: ${err.stack}`);
     return;
   }
 
-  console.log("connected as id " + connection.threadId);
+  console.log(`connected as id ${connection.threadId}`);
 });
 
 // connection.query("DROP TABLE IF EXISTS `childAnswers`");

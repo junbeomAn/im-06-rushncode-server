@@ -8,10 +8,10 @@ const verifyToken = (token, callback) => {
   // token does not exist
   if (token) {
     jwt.verify(token, 'rushncode', (err, decoded) => {
-      if (err) res.send(err);
+      if (err) callback(err, null);
       else {
         //console.log('decoded@@@#@#', decoded);
-        callback(null, decoded.email)
+        callback(null, decoded.email);
       }
     });
   } else {

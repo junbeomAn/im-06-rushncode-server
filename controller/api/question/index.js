@@ -3,8 +3,8 @@ const postQuestion = require('./postQuestion');
 const getList = require('./getList');
 const leaveAnswer = require('./leaveAnswer');
 const leaveChAnswer = require('./leaveChAnswer');
+const displayQ = require('./displayQ');
 
-const test = require('./test');
 
 
 
@@ -13,9 +13,8 @@ router.get('/getlist', getList);
 router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
 router.post('/read', leaveChAnswer);
+router.get('/displayq', displayQ);
 
-
-router.post('/test', test);
 
 
 module.exports = router

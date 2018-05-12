@@ -1,5 +1,5 @@
 /*
-POST /api/question/chanswer
+POST /api/question/displayq
 {
   body,
   questionID

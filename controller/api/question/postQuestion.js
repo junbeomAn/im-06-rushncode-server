@@ -1,5 +1,5 @@
 /*
-    POST /api/question/answer
+    POST /api/question/post
     {
         title,
         body,

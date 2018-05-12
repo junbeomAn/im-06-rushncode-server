@@ -3,7 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
 
-const requestHandle = require('./controller/requestHandler');
+const requestHandle = require('./controller');
 const users = require('./db/tables/users');
 const questions = require('./db/tables/questions');
 const answers = require('./db/tables/answers');
@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, '/client/public')));
+
 
 
 requestHandle(app);

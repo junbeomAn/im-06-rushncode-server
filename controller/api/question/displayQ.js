@@ -11,14 +11,16 @@ const Promise = require("bluebird");
 const getQuestion = Promise.promisify(require("../../../model/getQuestion"));
 const getAnswers = Promise.promisify(require("../../../model/getAnswers"));
 const getChAnswers = Promise.promisify(require("../../../model/getChAnswers"));
+const tagsOfQuestion = Promise.promisify(require("../../../model/gettagsOfQuestion"));
+const updateView = Promise.promisify(require("../../../model/updateView"));
 
 
 const displayQ = (req, res) => {
   var data = {};
-  const quesID = 1;
+  const quesID = req.url.split('/')[2];
   getQuestion(quesID).then((ques) => {
     //console.log(ques);
-    data = ques[0];
+    data = ques;
     getAnswers(quesID).then((answ) => {
       //console.log(answ);
       data.answers = {};
@@ -32,7 +34,19 @@ const displayQ = (req, res) => {
         chAnsw.map((item, index) => {
           data.answers[item.aID].chAnswers.push(item);
         })
-        res.send(data);
+        tagsOfQuestion(quesID).then((tags) => {
+          console.log('tags@#@#@#@#', tags);
+          data.tags = [];
+          tags.map(item => {
+            data.tags.push(item.tag)
+          })
+          updateView(quesID).then(() => {
+            res.send({
+              message: 'good',
+              data
+            });
+          })
+        })
       })
     })
   })

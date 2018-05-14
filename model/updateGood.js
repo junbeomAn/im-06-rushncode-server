@@ -1,8 +1,8 @@
 const db = require('../db');
 
 
-const updateView = (target, callback) => {
-  const sql = `UPDATE questions SET view=view+1 WHERE id=${target}`;
+const updateGood = (target, callback) => {
+  const sql = `UPDATE questions SET good=good+1 WHERE id=${target}`;
 
   db.query(sql, function (err, result) {
     if (err) {
@@ -13,4 +13,4 @@ const updateView = (target, callback) => {
   });
 }
 
-module.exports = updateView;
+module.exports = updateGood;

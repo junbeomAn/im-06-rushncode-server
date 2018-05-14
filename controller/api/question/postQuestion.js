@@ -28,10 +28,10 @@ const postQuestion = (req, res) => {
     reward,
     tags
   } = req.body;
-
+  console.log(req.query);
   const token = req.headers['x-access-token'] || req.query.token;
 
-  console.log(req.body);
+  // console.log(req.body);
   const data = {
     title,
     body,

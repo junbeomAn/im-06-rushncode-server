@@ -10,7 +10,7 @@ const getList = (req, res) => {
   var data = null;
   questionsList().then((questions) => {
     data = questions;
-    tagsOfQuestion().then((tags) => {
+    tagsOfQuestion(null).then((tags) => {
       data.map(item => {
         item.tags = [];
         tags.map(tag => {

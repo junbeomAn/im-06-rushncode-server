@@ -1,7 +1,6 @@
 const db = require("../index");
 
 const sql = `CREATE TABLE IF NOT EXISTS q_user (
-  good BOOLEAN DEFAULT FALSE,    
   userID INTEGER,
   questionID INTEGER,
   FOREIGN KEY (userID) REFERENCES users(id),

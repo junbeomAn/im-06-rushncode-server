@@ -11,73 +11,73 @@ db.query(sql, (err, result) => {
   console.log('add tags table');
 });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'javascript\')';
+// var query = "INSERT INTO tags(tag) VALUES('javascript')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;
 // });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'react.js\')';
+// var query = "INSERT INTO tags(tag) VALUES('react.js')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;
 // });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'node.js\')';
+// var query = "INSERT INTO tags(tag) VALUES('node.js')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;
 // });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'vue.js\')';
+// var query = "INSERT INTO tags(tag) VALUES('vue.js')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;
 // });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'angular.js\')';
+// var query = "INSERT INTO tags(tag) VALUES('angular.js')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;
 // });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'swift\')';
+// var query = "INSERT INTO tags(tag) VALUES('swift')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;
 // });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'C\')';
+// var query = "INSERT INTO tags(tag) VALUES('C')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;
 // });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'java\')';
+// var query = "INSERT INTO tags(tag) VALUES('java')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;
 // });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'C#\')';
+// var query = "INSERT INTO tags(tag) VALUES('C#')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;
 // });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'C++\')';
+// var query = "INSERT INTO tags(tag) VALUES('C++')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;
 // });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'python\')';
+// var query = "INSERT INTO tags(tag) VALUES('python')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;
 // });
 
-// var query = 'INSERT INTO tags(tag) VALUES(\'Mysql\')';
+// var query = "INSERT INTO tags(tag) VALUES('Mysql')";
 
 // db.query(query, (err, result) => {
 //   if (err) throw err;

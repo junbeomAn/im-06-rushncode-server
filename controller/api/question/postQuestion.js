@@ -4,7 +4,6 @@
         title,
         body,
         reward,
-        email,
         tags //array(3)
     }
 */

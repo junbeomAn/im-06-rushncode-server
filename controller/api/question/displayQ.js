@@ -24,22 +24,28 @@ const displayQ = (req, res) => {
     getAnswers(quesID).then((answ) => {
       //console.log(answ);
       data.answers = {};
-      answ.map((item, index) => {
-        data.answers[item.aID] = item;
-        data.answers[item.aID].chAnswers = [];
-      })
+      if (answ) {
+        answ.map((item, index) => {
+          data.answers[item.aID] = item;
+          data.answers[item.aID].chAnswers = [];
+        })
+      }
       //console.log(data);
       getChAnswers(quesID).then((chAnsw) => {
         //console.log(chAnsw);
-        chAnsw.map((item, index) => {
-          data.answers[item.aID].chAnswers.push(item);
-        })
+        if (chAnsw) {
+          chAnsw.map((item, index) => {
+            data.answers[item.aID].chAnswers.push(item);
+          })
+        }
         tagsOfQuestion(quesID).then((tags) => {
           console.log('tags@#@#@#@#', tags);
           data.tags = [];
-          tags.map(item => {
-            data.tags.push(item.tag)
-          })
+          if (tags) {
+            tags.map(item => {
+              data.tags.push(item.tag)
+            })
+          }
           updateView(quesID).then(() => {
             res.send({
               message: 'good',

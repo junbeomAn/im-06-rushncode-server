@@ -4,7 +4,7 @@ const sql = `CREATE TABLE IF NOT EXISTS tags (
   id INTEGER AUTO_INCREMENT,
   tag VARCHAR(255), 
   PRIMARY KEY(id)
-)`;
+) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci`;
 
 db.query(sql, function (err, result) {
   if (err) throw err;

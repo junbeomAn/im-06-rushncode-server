@@ -10,7 +10,7 @@ const sql = `CREATE TABLE IF NOT EXISTS childReplies (
   PRIMARY KEY(id),
   FOREIGN KEY (userID) REFERENCES users(id),
   FOREIGN KEY (answerID) REFERENCES replies(id)
-)`;
+) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci`;
 
 db.query(sql, function (err, result) {
   if (err) throw err;

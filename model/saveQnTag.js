@@ -22,6 +22,7 @@ const saveQnTag = (target, questionID, callback) => {
       }
     });
   }
+  callback(null, null);
 
 };
 

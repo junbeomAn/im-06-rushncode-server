@@ -5,6 +5,7 @@ const leaveAnswer = require('./leaveAnswer');
 const leaveChAnswer = require('./leaveChAnswer');
 const displayQ = require('./displayQ');
 const handleUpdateGood = require('./handleUpdateGood');
+const getTag = require('./getTagList');
 
 
 
@@ -15,6 +16,7 @@ router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
 router.get('/displayq/*', displayQ);
 router.post('/good/*', handleUpdateGood);
+router.get('/gettag', getTag);
 
 
 

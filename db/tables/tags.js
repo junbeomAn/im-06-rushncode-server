@@ -11,7 +11,9 @@ db.query(sql, function (err, result) {
   console.log("add tags table");
 });
 
-// var query = `INSERT INTO tags(tag) VALUES('javascript')`;
+// var query = `INSERT INTO tags(tag) VALUES('javascript')
+//               WHERE NOT EXISTS
+//                 (SELECT * FROM tags WHERE tag = 'javascript')`;
 
 // db.query(query, function (err, result) {
 //   if (err) throw err;

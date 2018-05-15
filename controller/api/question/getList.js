@@ -9,24 +9,18 @@ const tagsOfQuestion = Promise.promisify(require("../../../model/getTagsOfQuesti
 const getList = (req, res) => {
   var data = null;
   questionsList().then((questions) => {
-    data = questions;
-    tagsOfQuestion(null).then((tags) => {
-      data.map(item => {
-        item.tags = [];
-        tags.map(tag => {
-          if (item.id === tag.questionID) {
-            item.tags.push(tag.tag);
-          }
-        })
-      })
-      console.log(tags);
-      res.send({
-        message: 'good',
-        data: data
-      });
+    for (var i = 0; i < questions.length; i++) {
+      if (questions[i].tags === null) {
+        questions[i].tags = [];
+      } else {
+        questions[i].tags = questions[i].tags.split(',');
+      }
+    }
+    console.log(questions);
+    res.send({
+      message: 'good',
+      data: questions
     });
-
-
   })
 
   // if (err) {

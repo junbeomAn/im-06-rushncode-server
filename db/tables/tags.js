@@ -11,76 +11,111 @@ db.query(sql, function (err, result) {
   console.log("add tags table");
 });
 
-// var query = `INSERT INTO tags(tag) VALUES('javascript')
-//               WHERE NOT EXISTS
-//                 (SELECT * FROM tags WHERE tag = 'javascript')`;
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('javascript')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'javascript')`;
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+db.query(query, function (err, result) {
+  if (err) throw err;
+});
 
-// var query = `INSERT INTO tags(tag) VALUES('react.js')`;
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('react.js')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'react.js')`;
 
-// var query = `INSERT INTO tags(tag) VALUES('node.js')`;
+db.query(query, function (err, result) {
+  if (err) throw err;
+});
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('node.js')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'node.js')`;
 
-// var query = `INSERT INTO tags(tag) VALUES('vue.js')`;
+db.query(query, function (err, result) {
+  if (err) throw err;
+});
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('vue.js')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'vue.js')`;
 
-// var query = `INSERT INTO tags(tag) VALUES('angular.js')`;
+db.query(query, function (err, result) {
+  if (err) throw err;
+});
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('angular.js')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'angular.js')`;
 
-// var query = `INSERT INTO tags(tag) VALUES('swift')`;
+db.query(query, function (err, result) {
+  if (err) throw err;
+});
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('swift')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'swift')`;
 
-// var query = `INSERT INTO tags(tag) VALUES('C')`;
+db.query(query, function (err, result) {
+  if (err) throw err;
+});
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('C')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'C')`;
 
-// var query = `INSERT INTO tags(tag) VALUES('java')`;
+db.query(query, function (err, result) {
+  if (err) throw err;
+});
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('java')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'java')`;
 
-// var query = `INSERT INTO tags(tag) VALUES('C#')`;
+db.query(query, function (err, result) {
+  if (err) throw err;
+});
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('C#')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'C#')`;
 
-// var query = `INSERT INTO tags(tag) VALUES('C++')`;
+db.query(query, function (err, result) {
+  if (err) throw err;
+});
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('C++')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'C++')`;
 
-// var query = `INSERT INTO tags(tag) VALUES('python')`;
+db.query(query, function (err, result) {
+  if (err) throw err;
+});
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('python')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'python')`;
 
-// var query = `INSERT INTO tags(tag) VALUES('Mysql')`;
+db.query(query, function (err, result) {
+  if (err) throw err;
+});
 
-// db.query(query, function (err, result) {
-//   if (err) throw err;
-// });
+var query = `INSERT INTO tags(tag) SELECT *
+              FROM (SELECT ('Mysql')) AS tmp
+              WHERE NOT EXISTS 
+              (SELECT * FROM tags WHERE tags.tag = 'Mysql')`;
+
+db.query(query, function (err, result) {
+  if (err) throw err;
+});

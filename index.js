@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const requestHandle = require('./controller');
+
 const users = require('./db/tables/users');
 const questions = require('./db/tables/questions');
 const answers = require('./db/tables/answers');
@@ -20,7 +21,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
-    extended: false
+  extended: false
 }));
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, '/client/public')));

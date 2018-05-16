@@ -1,13 +1,13 @@
 /*
-    POST /api/auth/signin
-    {
-        email,
-        password
-    }
+POST /api/auth/signin
+{
+  email,
+  password
+}
 */
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt-nodejs");
-const model = require("../../../model/signInSignUp");
+const checkUser = require("../../../model/checkUser");
 
 const signin = (req, res) => {
   const { email, password } = req.body;
@@ -53,19 +53,21 @@ const signin = (req, res) => {
     });
   };
 
-  model.checkEmail(email, (err, result) => {
+  checkUser(email, (err, result) => {
     if (err) {
       res.send({
         message: err
       });
     } else {
-      if (result.length !== 0) {
-        cryptPassword(result[0].password, resultVerify => {
+      if (result) {
+        cryptPassword(result.password, resultVerify => {
           res.send(resultVerify);
         });
       } else {
         console.log("not exist");
-        res.send(resultVerify);
+        res.send({
+          message: "email is not exist"
+        });
       }
     }
   });

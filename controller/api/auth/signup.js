@@ -7,56 +7,61 @@
     }
 */
 const bcrypt = require('bcrypt-nodejs');
-const model = require('../../../model/signInSignUp');
+const saveUser = require('../../../model/saveUser');
+const checkUser = require('../../../model/checkUser');
 
 const signup = (req, res) => {
-    const {
-        email,
-        username,
-        password
-    } = req.body;
-    console.log('@@@@@@@', req.body);
+  const {
+    email,
+    username,
+    password
+  } = req.body;
+  console.log('@@@@@@@', req.body);
 
-    model.checkEmail(email, (err, result) => {
-        if (err) {
+  checkUser(email, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({
+        message: err
+      })
+    } else {
+      if (result) {
+        console.log('email 중복');
+        res.send({
+          message: 'email is exist'
+        })
+      } else {
+        bcrypt.hash(password, null, null, function (err, hash) {
+          if (err) {
             console.log(err);
-        } else {
-            if (result.length !== 0) {
-                console.log('email 중복');
-                res.send({
-                    message: 'email is exist'
-                })
-            } else {
-                bcrypt.hash(password, null, null, function (err, hash) {
-                    if (err) {
-                        console.log(err);
-                        res.send({
-                            message: err
-                        });
-                    } else {
-                        console.log(hash);
-                        const user = {
-                            email,
-                            username,
-                            password: hash
-                        }
-                        model.saveUser(user, (err, result) => {
-                            if (err) {
-                                res.send({
-                                    message: err
-                                });
-                            } else {
-                                res.send({
-                                    message: 'complete signup',
-                                    data: result
-                                })
-                            }
-                        })
-                    }
-                });
+            res.send({
+              message: err
+            });
+          } else {
+            console.log(hash);
+            const user = {
+              email,
+              username,
+              password: hash
             }
-        }
-    })
+            saveUser(user, (err, result) => {
+              if (err) {
+                res.send({
+                  message: err,
+                  success: result
+                });
+              } else {
+                res.send({
+                  message: 'complete signup',
+                  success: result
+                })
+              }
+            })
+          }
+        });
+      }
+    }
+  })
 }
 
 module.exports = signup;

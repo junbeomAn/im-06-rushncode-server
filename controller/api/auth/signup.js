@@ -52,10 +52,16 @@ const signup = (req, res) => {
                   success: result
                 });
               } else {
-                sendMail(email);
-                res.send({
-                  message: 'complete signup',
-                  success: result
+                checkUser(email, (err, result) => {
+                  if (err) {
+                    console.log(err)
+                  } else {
+                    sendMail(email, result.id);
+                    res.send({
+                      message: 'complete signup',
+                      success: result
+                    })
+                  }
                 })
               }
             })

@@ -58,9 +58,13 @@ const signin = (req, res) => {
       });
     } else {
       if (result) {
-        cryptPassword(result.password, (resultVerify) => {
-          res.send(resultVerify);
-        })
+        if (result.verified === true) {
+          cryptPassword(result.password, (resultVerify) => {
+            res.send(resultVerify);
+          })
+        } else {
+          res.send('check your email & verify');
+        }
       } else {
         console.log('not exist');
         res.send({

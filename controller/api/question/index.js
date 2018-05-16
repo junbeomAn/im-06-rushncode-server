@@ -8,9 +8,6 @@ const handleUpdateGood = require('./handleUpdateGood');
 const getTag = require('./getTagList');
 const modifyQuestion = require('./modifyQuestion');
 
-
-
-
 router.post('/post', postQuestion);
 router.get('/getlist', getList);
 router.post('/answer', leaveAnswer);
@@ -20,6 +17,4 @@ router.post('/good/*', handleUpdateGood);
 router.get('/gettag', getTag);
 router.post('/modifyquestion/*', modifyQuestion);
 
-
-
-module.exports = router
+module.exports = router;

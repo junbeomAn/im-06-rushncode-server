@@ -16,6 +16,7 @@ connection.connect((err) => {
   console.log(`connected as id ${connection.threadId}`);
 });
 
+// connection.query('SET FOREIGN_KEY_CHECKS = 0');
 // connection.query('DROP TABLE IF EXISTS `childAnswers`');
 // connection.query('DROP TABLE IF EXISTS `answers`');
 // connection.query('DROP TABLE IF EXISTS `q_user`');
@@ -24,5 +25,8 @@ connection.connect((err) => {
 // connection.query('DROP TABLE IF EXISTS `replies`');
 // connection.query('DROP TABLE IF EXISTS `posts`');
 // connection.query('DROP TABLE IF EXISTS `users`');
+// connection.query('DROP TABLE IF EXISTS `q_tag`');
+// connection.query('DROP TABLE IF EXISTS `tags`');
+// connection.query('SET FOREIGN_KEY_CHECKS = 1');
 
 module.exports = connection;

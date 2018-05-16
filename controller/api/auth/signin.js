@@ -57,13 +57,16 @@ const signin = (req, res) => {
         message: err
       });
     } else {
+      console.log(result);
       if (result) {
-        if (result.verified === true) {
+        if (result.verified === 1) {
           cryptPassword(result.password, (resultVerify) => {
             res.send(resultVerify);
           })
         } else {
-          res.send('check your email & verify');
+          res.send({
+            message: 'check your email & verify'
+          });
         }
       } else {
         console.log('not exist');

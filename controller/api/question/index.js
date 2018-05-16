@@ -12,11 +12,11 @@ const modifyQuestion = require('./modifyQuestion');
 
 
 router.post('/post', postQuestion);
-router.get('/getlist', getList);
+router.get('/getlist/*', getList);
 router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
 router.get('/displayq/*', displayQ);
-router.post('/good/*', handleUpdateGood);
+router.get('/good/*', handleUpdateGood);
 router.get('/gettag', getTag);
 router.post('/modifyquestion/*', modifyQuestion);
 

@@ -34,8 +34,9 @@ const signin = (req, res) => {
           }, (err, token) => {
             if (err) {
               console.log(err);
+              callback(err, null);
             } else {
-              callback({
+              callback(null, {
                 message: 'login success',
                 token
               });

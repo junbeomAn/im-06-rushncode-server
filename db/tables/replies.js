@@ -11,7 +11,7 @@ const sql = `CREATE TABLE IF NOT EXISTS replies (
   PRIMARY KEY(id),
   FOREIGN KEY (userID) REFERENCES users(id),
   FOREIGN KEY (questionID) REFERENCES posts(id)
-)`;
+) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci`;
 
 db.query(sql, function (err, result) {
   if (err) throw err;

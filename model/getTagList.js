@@ -1,8 +1,7 @@
 const db = require("../db");
 
-const checkTag = (target, callback) => {
-  const sql = `SELECT * FROM tags 
-    WHERE tag IN('${target[0]}', '${target[1]}', '${target[2]}')`;
+const getTagList = (callback) => {
+  const sql = `SELECT * FROM tags`;
   db.query(sql, function (err, result) {
     if (err) {
       callback(err, null);
@@ -16,4 +15,4 @@ const checkTag = (target, callback) => {
   });
 };
 
-module.exports = checkTag;
+module.exports = getTagList;

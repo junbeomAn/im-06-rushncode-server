@@ -16,7 +16,7 @@ const sendMail = (email, id) => {
     } else {
       var mailOptions = {
         from: 'rushncode@gmail.com',
-        to: 'rushncode@gmail.com',
+        to: email,
         subject: 'Sending Email using Node.js',
         text: `http://localhost:3001/api/auth/verifyemail/${id}/${hash}`
       };

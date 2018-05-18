@@ -9,6 +9,7 @@
 const bcrypt = require('bcrypt-nodejs');
 const saveUser = require('../../../model/saveUser');
 const checkUser = require('../../../model/checkUser');
+const sendMail = require('./sendMail');
 
 const signup = (req, res) => {
   const {
@@ -51,6 +52,7 @@ const signup = (req, res) => {
                   success: result
                 });
               } else {
+                sendMail(email);
                 res.send({
                   message: 'complete signup',
                   success: result

@@ -9,7 +9,7 @@ const getTag = require('./getTagList');
 const modifyQuestion = require('./modifyQuestion');
 
 router.post('/post', postQuestion);
-router.get('/getlist', getList);
+router.get('/getlist/*', getList);
 router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
 router.get('/displayq/*', displayQ);

@@ -27,6 +27,7 @@ connection.connect((err) => {
 // connection.query("DROP TABLE IF EXISTS `users`");
 // connection.query("DROP TABLE IF EXISTS `q_tag`");
 // connection.query("DROP TABLE IF EXISTS `tags`");
+// connection.query("DROP TABLE IF EXISTS `a_user`");
 // connection.query("SET FOREIGN_KEY_CHECKS = 1");
 
 module.exports = connection;

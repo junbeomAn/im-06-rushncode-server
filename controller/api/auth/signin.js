@@ -10,69 +10,72 @@ const bcrypt = require('bcrypt-nodejs');
 const checkUser = require('../../../model/checkUser');
 
 const signin = (req, res) => {
-  const {
-    email,
-    password
-  } = req.body;
+  const { email, password } = req.body;
 
   const cryptPassword = (target, callback) => {
-    bcrypt.compare(password, target, function (err, truth) {
+    bcrypt.compare(password, target, (err, truth) => {
       if (err) {
         console.log(err);
         callback({
-          message: err
+          message: err,
         });
-      } else {
-        if (truth) {
-          // console.log('login success');
-          jwt.sign({
-            email: email
-          }, 'rushncode', {
+      } else if (truth) {
+        // console.log('login success');
+        jwt.sign(
+          {
+            email,
+          },
+          'rushncode',
+          {
             expiresIn: '7d',
             issuer: 'rushncode',
-            subject: 'userInfo'
-          }, (err, token) => {
+            subject: 'userInfo',
+          },
+          (err, token) => {
             if (err) {
-              console.log(err);
+              callback(err, null);
             } else {
-              callback({
+              callback(null, {
                 message: 'login success',
-                token
+                token,
               });
             }
-          })
-        } else {
-          console.log('login fail');
-          callback({
-            message: 'password is not corret'
-          });
-        }
+          },
+        );
+      } else {
+        callback({
+          message: 'password is not corret',
+        });
       }
     });
-  }
+  };
 
   checkUser(email, (err, result) => {
     if (err) {
       res.send({
-        message: err
+        message: err,
       });
     } else {
+      console.log('######', result.verified === 1);
       if (result) {
-        cryptPassword(result.password, (resultVerify) => {
-          res.send(resultVerify);
-        })
+        if (result.verified === 1) {
+          cryptPassword(result.password, (err, resultVerify) => {
+            console.log(resultVerify);
+            res.send(resultVerify);
+          });
+        } else {
+          res.send({
+            message: 'check your email & verify',
+          });
+        }
       } else {
         console.log('not exist');
         res.send({
-          message: 'email is not exist'
+          message: 'email is not exist',
         });
       }
     }
-  })
-
-
-}
-
-
+  });
+};
 
 module.exports = signin;

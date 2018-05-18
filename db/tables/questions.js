@@ -3,7 +3,7 @@ const db = require("../index");
 const sql = `CREATE TABLE IF NOT EXISTS questions (
   id INTEGER AUTO_INCREMENT,
   title VARCHAR(255), 
-  body VARCHAR(255), 
+  body MEDIUMTEXT, 
   good INTEGER DEFAULT 0,  
   view INTEGER DEFAULT 0,  
   reward INTEGER DEFAULT 0, 

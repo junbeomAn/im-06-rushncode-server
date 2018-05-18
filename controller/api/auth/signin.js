@@ -10,10 +10,7 @@ const bcrypt = require('bcrypt-nodejs');
 const checkUser = require('../../../model/checkUser');
 
 const signin = (req, res) => {
-  const {
-    email,
-    password
-  } = req.body;
+  const { email, password } = req.body;
 
   const cryptPassword = (target, callback) => {
     bcrypt.compare(password, target, function (err, truth) {
@@ -31,10 +28,10 @@ const signin = (req, res) => {
             expiresIn: '7d',
             issuer: 'rushncode',
             subject: 'userInfo'
-          }, (err, token) => {
-            if (err) {
-              console.log(err);
-              callback(err, null);
+          }, (error, token) => {
+            if (error) {
+              console.log(error);
+              callback(error, null);
             } else {
               callback(null, {
                 message: 'login success',
@@ -61,7 +58,7 @@ const signin = (req, res) => {
       console.log(result);
       if (result) {
         if (result.verified === 1) {
-          cryptPassword(result.password, (resultVerify) => {
+          cryptPassword(result.password, (error, resultVerify) => {
             res.send(resultVerify);
           })
         } else {

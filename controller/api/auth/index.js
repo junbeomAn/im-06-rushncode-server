@@ -6,6 +6,9 @@ const sendMail = require('./sendMail');
 const verifyEmail = require('./verifyemail');
 
 const github = require('./github');
+const google = require('./google');
+const facebook = require('./facebook');
+
 const test = require('./test');
 
 
@@ -15,6 +18,8 @@ router.post('/signin', signin);
 router.get('/verifyemail/*', verifyEmail);
 
 router.post('/github', github);
+router.post('/google', google);
+router.post('/facebook', facebook);
 
 router.post('/test', test);
 

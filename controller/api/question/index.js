@@ -4,7 +4,8 @@ const getList = require('./getList');
 const leaveAnswer = require('./leaveAnswer');
 const leaveChAnswer = require('./leaveChAnswer');
 const displayQ = require('./displayQ');
-const handleUpdateGood = require('./handleUpdateGood');
+const handleQuestionGood = require('./handleQuestionGood');
+const handleAnswerGood = require('./handleAnswerGood');
 const getTag = require('./getTagList');
 const modifyQuestion = require('./modifyQuestion');
 
@@ -16,7 +17,8 @@ router.get('/getlist/*', getList);
 router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
 router.get('/displayq/*', displayQ);
-router.post('/good/*', handleUpdateGood);
+router.post('/good/*', handleQuestionGood);
+router.post('/goodanswer/*', handleAnswerGood);
 router.get('/gettag', getTag);
 router.post('/modifyquestion/*', modifyQuestion);
 

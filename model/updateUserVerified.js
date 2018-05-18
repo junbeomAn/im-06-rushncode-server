@@ -2,7 +2,6 @@ const db = require('../db');
 
 
 const updateUserVerified = (email, callback) => {
-  console.log('email@#@#', email);
   const sql = `UPDATE users SET verified=1 WHERE email = '${email}'`;
 
   db.query(sql, function (err, result) {

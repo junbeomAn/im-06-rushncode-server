@@ -1,5 +1,5 @@
 /*
-    POST /api/question/goodanswer
+    POST /api/question/goodanswer/{answerID}
 */
 const Promise = require("bluebird");
 const db = require('../../../db/index');

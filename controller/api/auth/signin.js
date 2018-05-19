@@ -32,11 +32,11 @@ const signin = (req, res) => {
               issuer: "rushncode",
               subject: "userInfo"
             },
-            (err, token) => {
-              if (err) {
-                console.log(err);
+            (error, token) => {
+              if (error) {
+                console.log(error);
               } else {
-                callback({
+                callback(null, {
                   message: "login success",
                   token
                 });
@@ -62,7 +62,7 @@ const signin = (req, res) => {
       console.log(result);
       if (result) {
         if (result.verified === 1) {
-          cryptPassword(result.password, (resultVerify) => {
+          cryptPassword(result.password, (error, resultVerify) => {
             res.send(resultVerify);
           })
         } else {

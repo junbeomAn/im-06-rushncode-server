@@ -12,6 +12,7 @@ const modifyQuestion = require('./modifyQuestion');
 const getNumOfQuestions = require('./getNumOfQuestions');
 const getNumOfChooseQuestions = require('./getNumOfChooseQuestions');
 const leaveReply = require('./leaveReply');
+const pickQuestion = require('./pickQuestion');
 
 
 
@@ -21,6 +22,7 @@ router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
 router.post('/reply', leaveReply);
 router.get('/gettag', getTag);
+router.get('/pick', pickQuestion);
 router.get('/getNumOfQuestions', getNumOfQuestions);
 router.get('/getNumOfChooseQuestions', getNumOfChooseQuestions);
 

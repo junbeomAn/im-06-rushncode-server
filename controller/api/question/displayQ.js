@@ -36,6 +36,7 @@ const displayQ = (req, res) => {
         if (answ) {
           for(let i = 0;i < answ.length;i++) {
             data.answers.push(answ[i]);
+            data.answers[i].chAnswers = [];
           }
           // answ.map((item, index) => {
           //   data.answers[item.aID] = item;
@@ -47,10 +48,9 @@ const displayQ = (req, res) => {
           console.log('#$#$',chAnsw);
           if (chAnsw) {
             for(let j = 0;j < data.answers.length;j++) {
-              data.answers[j].chAnswers = [];
               for(let i = 0;i < chAnsw.length;i++) {
                 if(data.answers[j].aID === chAnsw[i].aID) {
-                  data.answers[j].chAnswers.push(chAnsw[i])
+                  data.answers[j].chAnswers.push(chAnsw[i]);
                 }
               }
             }

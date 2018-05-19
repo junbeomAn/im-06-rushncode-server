@@ -4,7 +4,7 @@
 
 const Promise = require("bluebird");
 
-const getTagList = Promise.promisify(require("../../../model/getTagList"));
+const updateNumOfQuestions = Promise.promisify(require("../../../model/updateNumOfQuestions"));
 
 const getNumOfQuestions = (req, res) => {
   // getTagList().then((result) => {

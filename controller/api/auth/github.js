@@ -48,7 +48,7 @@ const github = (req, res) => {
             } else {
               saveUser(user, () => {
                 makeToken(user.email)
-                  .then(() => res.send(resultToken))
+                  .then((resultToken) => res.send(resultToken))
               });
             }
           })

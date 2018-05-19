@@ -31,20 +31,32 @@ const displayQ = (req, res) => {
       }
       getAnswers(quesID).then((answ) => {
         // console.log(answ);
-        data.answers = {};
+        data.answers = [];
         if (answ) {
-          answ.map((item, index) => {
-            data.answers[item.aID] = item;
-            data.answers[item.aID].chAnswers = [];
-          });
+          for (let i = 0; i < answ.length; i++) {
+            data.answers.push(answ[i]);
+            data.answers[i].chAnswers = [];
+          }
+          // answ.map((item, index) => {
+          //   data.answers[item.aID] = item;
+          //   data.answers[item.aID].chAnswers = [];
+          // })
         }
         // console.log(data);
         getChAnswers(quesID).then((chAnsw) => {
-          // console.log(chAnsw);
+          console.log('#$#$', chAnsw);
           if (chAnsw) {
-            chAnsw.map((item, index) => {
-              data.answers[item.aID].chAnswers.push(item);
-            });
+            for (let j = 0; j < data.answers.length; j++) {
+              for (let i = 0; i < chAnsw.length; i++) {
+                if (data.answers[j].aID === chAnsw[i].aID) {
+                  data.answers[j].chAnswers.push(chAnsw[i]);
+                }
+              }
+            }
+
+            // chAnsw.map((item, index) => {
+            //   data.answers[item.aID].chAnswers.push(item);
+            // })
           }
           tagsOfQuestion(quesID).then((tags) => {
             console.log('tags@#@#@#@#', tags);

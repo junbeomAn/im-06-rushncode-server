@@ -28,3 +28,4 @@ const getAnswers = (target, callback) => {
 }
 
 module.exports = getAnswers;
+

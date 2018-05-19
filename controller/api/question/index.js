@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const postQuestion = require('./postQuestion');
 const getList = require('./getList');
 const leaveAnswer = require('./leaveAnswer');
@@ -8,15 +9,22 @@ const handleQuestionGood = require('./handleQuestionGood');
 const handleAnswerGood = require('./handleAnswerGood');
 const getTag = require('./getTagList');
 const modifyQuestion = require('./modifyQuestion');
+const getNumOfQuestions = require('./getNumOfQuestions');
+const getNumOfChooseQuestions = require('./getNumOfChooseQuestions');
+const leaveReply = require('./leaveReply');
 
 router.post('/post', postQuestion);
-router.get('/getlist/*', getList);
 router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
+router.post('/reply', leaveReply);
+router.get('/gettag', getTag);
+router.get('/getNumOfQuestions', getNumOfQuestions);
+router.get('/getNumOfChooseQuestions', getNumOfChooseQuestions);
+
+router.post('/goodanswer/*', handleAnswerGood);
+router.get('/getlist/*', getList);
 router.get('/displayq/*', displayQ);
 router.post('/good/*', handleQuestionGood);
-router.post('/goodanswer/*', handleAnswerGood);
-router.get('/gettag', getTag);
 router.post('/modifyquestion/*', modifyQuestion);
 
 module.exports = router;

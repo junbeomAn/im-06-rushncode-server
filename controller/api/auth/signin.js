@@ -29,11 +29,11 @@ const signin = (req, res) => {
           {
             expiresIn: '7d',
             issuer: 'rushncode',
-            subject: 'userInfo',
-          },
-          (err, token) => {
-            if (err) {
-              callback(err, null);
+            subject: 'userInfo'
+          }, (error, token) => {
+            if (error) {
+              console.log(error);
+              callback(error, null);
             } else {
               callback(null, {
                 message: 'login success',
@@ -59,8 +59,7 @@ const signin = (req, res) => {
       console.log('######', result.verified === 1);
       if (result) {
         if (result.verified === 1) {
-          cryptPassword(result.password, (err, resultVerify) => {
-            console.log(resultVerify);
+          cryptPassword(result.password, (error, resultVerify) => {
             res.send(resultVerify);
           });
         } else {

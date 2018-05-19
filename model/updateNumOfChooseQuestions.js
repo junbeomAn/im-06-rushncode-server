@@ -3,7 +3,7 @@ const db = require('../db');
 
 const updateQuestion = (target, callback) => {
   const { title, body, questionID } = target;
-  const sql = `UPDATE questions SET title = '${title}', body = '${body}', updated_at = now() WHERE questions.id = ${questionID}`;
+  const sql = ``;
 
   db.query(sql, function (err, result) {
     if (err) {

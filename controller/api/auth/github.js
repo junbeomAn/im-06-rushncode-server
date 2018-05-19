@@ -29,9 +29,9 @@ const github = (req, res) => {
   console.log(code);
   const { clientId, clientSecret } = githubAuth;
 
-  axios.post(`http://github.com/login/oauth/access_token?client_id=${clientId}&client_secret=${clientSecret}&code=${code}`).then((result) => {
+  axios.post(`https://github.com/login/oauth/access_token?client_id=${clientId}&client_secret=${clientSecret}&code=${code}`).then((result) => {
     const githubToken = result.data.split('&')[0].slice(13);
-    axios.get(`http://api.github.com/user?access_token=${githubToken}`)
+    axios.get(`https://api.github.com/user?access_token=${githubToken}`)
       .then(userInfo => {
         console.log(userInfo.data);
         const user = {
@@ -48,7 +48,7 @@ const github = (req, res) => {
             } else {
               saveUser(user, () => {
                 makeToken(user.email)
-                  .then(() => res.send(resultToken))
+                  .then((resultToken) => res.send(resultToken))
               });
             }
           })

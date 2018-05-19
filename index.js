@@ -15,6 +15,7 @@ const q_user = require('./db/tables/q_user');
 const posts = require('./db/tables/posts');
 const replies = require('./db/tables/replies');
 const childReplies = require('./db/tables/childReplies');
+const a_user = require('./db/tables/a_user');
 
 
 const app = express();

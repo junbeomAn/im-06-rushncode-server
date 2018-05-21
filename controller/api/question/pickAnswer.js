@@ -1,9 +1,5 @@
 /*
     POST /api/question/pickanswer
-    {
-        body,
-        questionID
-    }
 */
 
 const Promise = require("bluebird");

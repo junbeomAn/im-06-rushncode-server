@@ -12,14 +12,12 @@ const modifyQuestion = require('./modifyQuestion');
 const leaveReply = require('./leaveReply');
 const pickAnswer = require('./pickanswer');
 
-
 router.post('/post', postQuestion);
 router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
 router.post('/reply', leaveReply);
 router.get('/gettag', getTag);
 router.post('/pickanswer/*', pickAnswer);
-
 
 router.post('/goodanswer/*', handleAnswerGood);
 router.get('/getlist/*', getList);

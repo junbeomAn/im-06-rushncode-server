@@ -10,7 +10,11 @@ const updateView = (target, callback) => {
     } else if (result.length !== 0) {
       callback(null, result);
     } else {
-      callback(null, null);
+      if(result.length !== 0) {
+        callback(null, result);
+      } else {
+        callback(null, null);
+      }
     }
   });
 };

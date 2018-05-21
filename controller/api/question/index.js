@@ -9,10 +9,9 @@ const handleQuestionGood = require('./handleQuestionGood');
 const handleAnswerGood = require('./handleAnswerGood');
 const getTag = require('./getTagList');
 const modifyQuestion = require('./modifyQuestion');
-const getNumOfQuestions = require('./getNumOfQuestions');
-const getNumOfChooseQuestions = require('./getNumOfChooseQuestions');
 const leaveReply = require('./leaveReply');
-const pickQuestion = require('./pickQuestion');
+const pickAnswer = require('./pickanswer');
+
 
 
 
@@ -22,9 +21,8 @@ router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
 router.post('/reply', leaveReply);
 router.get('/gettag', getTag);
-router.get('/pick', pickQuestion);
-router.get('/getNumOfQuestions', getNumOfQuestions);
-router.get('/getNumOfChooseQuestions', getNumOfChooseQuestions);
+router.post('/pickanswer/*', pickAnswer);
+
 
 router.post('/goodanswer/*', handleAnswerGood);
 router.get('/getlist/*', getList);

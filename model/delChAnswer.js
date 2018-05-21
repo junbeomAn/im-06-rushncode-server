@@ -2,7 +2,6 @@ const db = require('../db');
 
 
 const delChAnswer = (chanswerID, callback) => {
-  const { title, body, questionID } = target;
   const sql = `UPDATE childanswers 
                 SET deleted=1 
                 WHERE childanswers.id=${chanswerID}`;

@@ -14,7 +14,7 @@ const getAnswers = (target, callback) => {
               FROM answers 
               INNER JOIN users 
               ON users.id=answers.userID
-              WHERE answers.questionID=${target}`;
+              WHERE answers.deleted=0 AND answers.questionID=${target}`;
 
   db.query(sql, function (err, result) {
     if (err) {

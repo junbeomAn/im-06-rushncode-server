@@ -9,7 +9,6 @@ const checkUser = (target, callback) => {
     if (err) {
       callback(err, null, null);
     } else {
-      console.log(result);
       if (result.length !== 0) {
         callback(null, result[0]);
       } else {

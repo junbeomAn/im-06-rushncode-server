@@ -3,11 +3,7 @@ const db = require('../db');
 
 
 const saveQuestion = (target, userID, callback) => {
-  const {
-    title,
-    body,
-    reward
-  } = target;
+  const { title, body, reward } = target;
   const sql = `INSERT INTO questions(title, body, reward, userID) 
               VALUES('${title}', '${body}', ${reward}, ${userID})`;
 

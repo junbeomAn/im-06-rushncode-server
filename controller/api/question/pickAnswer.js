@@ -11,6 +11,8 @@ const Promise = require("bluebird");
 const updatePickStateAnswer = Promise.promisify(require("../../../model/updatePickStateAnswer"));
 const updateNumOfChooseAnswers = Promise.promisify(require("../../../model/updateNumOfChooseAnswers"));
 const checkUser = Promise.promisify(require("../../../model/checkUser"));
+const updateNumOfQuestions = Promise.promisify(require("../../../model/updateNumOfQuestions"));
+const checkQuestion = Promise.promisify(require("../../../model/checkQuestion"));
 
 const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
 
@@ -23,12 +25,15 @@ const pickAnswer = (req, res) => {
     checkUser(email).then((user) => {
       updateNumOfChooseAnswers(user.id).then(() => {
         updatePickStateAnswer(answerID).then(() => {
-          res.send();
-        })
-      })
-    })
+          checkQuestion(answerID).then((questionID) => {
+            updateNumOfQuestions(questionID).then(() => {
+              res.send();
+            });
+          });
+        });
+      });
+    });
   });
-  
 }
 
 module.exports = pickAnswer;

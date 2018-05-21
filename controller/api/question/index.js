@@ -11,6 +11,11 @@ const getTag = require('./getTagList');
 const modifyQuestion = require('./modifyQuestion');
 const leaveReply = require('./leaveReply');
 const pickAnswer = require('./pickanswer');
+const deleteAnswer = require('./deleteAnswer');
+const deleteChAnswer = require('./deleteChAnswer');
+const deleteQuestion = require('./deleteQuestion');
+const deleteReply = require('./deleteReply');
+
 
 
 

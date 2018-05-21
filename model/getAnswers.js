@@ -4,12 +4,13 @@ const db = require('../db');
 
 const getAnswers = (target, callback) => {
   const sql = `SELECT 
-                users.username AS username,
-                users.id AS userID,
+                users.username AS username, 
+                users.id AS userID, 
                 answers.id AS aID, 
                 answers.body AS aBody, 
                 answers.updated_at AS aTime, 
-                answers.good AS aGood
+                answers.good AS aGood, 
+                answers.picked AS picked
               FROM answers 
               INNER JOIN users 
               ON users.id=answers.userID

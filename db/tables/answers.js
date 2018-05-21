@@ -3,7 +3,8 @@ const db = require('../index');
 const sql = `CREATE TABLE IF NOT EXISTS answers (
   id INTEGER AUTO_INCREMENT,
   body MEDIUMTEXT, 
-  good INTEGER DEFAULT 0,    
+  good INTEGER DEFAULT 0,   
+  picked BOOLEAN DEFAULT FALSE, 
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   userID INTEGER,

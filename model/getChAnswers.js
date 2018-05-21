@@ -5,6 +5,7 @@ const db = require('../db');
 const getChAnswers = (target, callback) => {
   const sql = `SELECT 
                 users.username AS username,
+                users.id AS userID,
                 childanswers.id AS cID, 
                 childanswers.body AS cBody, 
                 childanswers.updated_at AS cTime,

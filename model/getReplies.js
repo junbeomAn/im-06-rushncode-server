@@ -7,7 +7,8 @@ const getReplies = (target, callback) => {
                 replies.id AS rID, 
                 replies.body AS rBody, 
                 replies.updated_at AS rTime,
-                users.username AS username
+                users.username AS username,
+                users.id AS userID
               FROM questions 
               INNER JOIN replies 
               ON questions.id=replies.questionID

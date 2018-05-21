@@ -2,33 +2,41 @@
     GET /api/question/getlist
 */
 const Promise = require("bluebird");
+
+const checkUser = Promise.promisify(require("../../../model/checkUser"));
 const getPickedAnswers = Promise.promisify(require("../../../model/getPickedAnswers"));
-const getNumOfAnswers = Promise.promisify(require("../../../model/getNumOfAnswers"));
-const getNumOfChooseAnswers = Promise.promisify(require("../../../model/getNumOfChooseAnswers"));
-const getNumOfQuestions = Promise.promisify(require("../../../model/getNumOfQuestions"));
+const getProfileInfo = Promise.promisify(require("../../../model/getProfileInfo"));
+const getUserInfo = Promise.promisify(require("../../../model/getUserInfo"));
+const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
 
 const getList = (req, res) => {
+  const token = req.headers['x-access-token'] || req.query.token;
   const userID = req.url.split('/')[2];
   var data = null;
-  getPickedAnswers(userID).then((pickedAnswers) => {
-    getNumOfAnswers(userID).then((numOfAnswers) => {
-      getNumOfChooseAnswers(userID).then((numOfChooseAnswers) => {
-        getNumOfQuestions(userID).then((numOfQuestions) => {
-          data = { 
-            pickedAnswers: pickedAnswers[0].pickedAnswers, 
-            numOfAnswers: numOfAnswers[0].num_of_answers, 
-            numOfChooseAnswers: numOfChooseAnswers[0].choose_answers, 
-            numOfQuestions: numOfQuestions[0].num_of_questions
-          }
-          res.send({
-            message: 'good',
-            data
+  verifyToken(token).then((email) => {
+    checkUser(email).then(result => {
+      getUserInfo(userID).then((user) => {
+        data = { 
+          email: user.email,
+          username: user.username
+        }
+        getPickedAnswers(userID).then((pickedAnswers) => {
+          getProfileInfo(userID).then((info) => {
+            data.pickedAnswers = pickedAnswers.pickedAnswers;
+            data.numOfAnswers = info.num_of_answers;
+            data.numOfChooseAnswers = info.choose_answers;
+            data.numOfQuestions = info.num_of_questions;
+        
+            res.send({
+              message: 'good',
+              data
+            });
+       
           });
         });
       });
     });
   });
-
 }
 
 module.exports = getList;

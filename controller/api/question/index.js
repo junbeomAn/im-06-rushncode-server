@@ -16,6 +16,8 @@ const pickAnswer = require('./pickanswer');
 
 
 
+
+
 router.post('/post', postQuestion);
 router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
@@ -29,6 +31,8 @@ router.get('/getlist/*', getList);
 router.get('/displayq/*', displayQ);
 router.post('/good/*', handleQuestionGood);
 router.post('/modifyquestion/*', modifyQuestion);
+
+
 
 
 

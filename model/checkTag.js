@@ -1,16 +1,18 @@
 const db = require('../db');
 
-
 const updateView = (target, callback) => {
-  const sql = `SELECT choose_answers FROM users WHERE id = ${userID}`;
+  const sql = `SELECT * FROM tags 
+                WHERE tag IN('${target[0]}', '${target[1]}', '${target[2]}')`;
 
-  db.query(sql, function (err, result) {
+  db.query(sql, (err, result) => {
     if (err) {
       callback(err, false);
+    } else if (result.length !== 0) {
+      callback(null, result);
     } else {
-      callback(null, true);
+      callback(null, null);
     }
   });
-}
+};
 
 module.exports = updateView;

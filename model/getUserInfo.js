@@ -2,8 +2,8 @@ const db = require('../db');
 
 
 
-const checkUser = (target, callback) => {
-  const sql = `SELECT * FROM users WHERE email='${target}'`;
+const checkUser = (userID, callback) => {
+  const sql = `SELECT * FROM users WHERE id=${userID}`;
 
   db.query(sql, function (err, result) {
     if (err) {

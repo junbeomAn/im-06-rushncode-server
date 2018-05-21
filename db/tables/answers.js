@@ -9,6 +9,7 @@ const sql = `CREATE TABLE IF NOT EXISTS answers (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   userID INTEGER,
   questionID INTEGER,
+  deleted BOOLEAN DEFAULT FALSE, 
   PRIMARY KEY(id),
   FOREIGN KEY (userID) REFERENCES users(id),
   FOREIGN KEY (questionID) REFERENCES questions(id)

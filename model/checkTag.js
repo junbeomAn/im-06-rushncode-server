@@ -3,7 +3,7 @@ const db = require('../db');
 
 const updateView = (target, callback) => {
   const sql = `SELECT * FROM tags
-                WHERE tag IN('${target[0]}', '${target[0]}', '${target[0]}')`;
+                WHERE tag IN('${target[0]}', '${target[1]}', '${target[2]}')`;
 
   db.query(sql, function (err, result) {
     if (err) {

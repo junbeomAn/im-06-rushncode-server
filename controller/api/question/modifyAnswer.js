@@ -9,6 +9,7 @@ POST /api/question/modifyanswer
 const Promise = require("bluebird");
 
 const updateAnswer = Promise.promisify(require("../../../model/updateAnswer"));
+const checkAnswer = Promise.promisify(require("../../../model/checkAnswer"));
 
 const modifyAnswer = (req, res) => {
   let target = {};
@@ -17,9 +18,12 @@ const modifyAnswer = (req, res) => {
 
 
   updateAnswer(target).then(() => {
-    res.send({
-      message: 'modify Answer complete!'
-    });
+    checkAnswer(target.answerID).then((answer) => {
+      res.send({
+        message: 'modify Answer complete!',
+        questionID: answer.questionID
+      });
+    })
   })
 }
 

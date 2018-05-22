@@ -9,8 +9,11 @@ const handleQuestionGood = require('./handleQuestionGood');
 const handleAnswerGood = require('./handleAnswerGood');
 const getTag = require('./getTagList');
 const modifyQuestion = require('./modifyQuestion');
+const modifyAnswer = require('./modifyAnswer');
 const leaveReply = require('./leaveReply');
 const pickAnswer = require('./pickanswer');
+const infoOfAnswer = require('./infoOfAnswer');
+
 
 router.post('/post', postQuestion);
 router.post('/answer', leaveAnswer);
@@ -24,5 +27,8 @@ router.get('/getlist/*', getList);
 router.get('/displayq/*', displayQ);
 router.post('/good/*', handleQuestionGood);
 router.post('/modifyquestion/*', modifyQuestion);
+router.post('/modifyanswer/*', modifyAnswer);
+router.get('/getanswer/*', infoOfAnswer);
+
 
 module.exports = router;

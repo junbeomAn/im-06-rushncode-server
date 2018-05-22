@@ -2,7 +2,6 @@ const db = require('../db');
 
 
 const delReply = (replyID, callback) => {
-  const { title, body, questionID } = target;
   const sql = `UPDATE replies 
                 SET deleted=1 
                 WHERE replies.id=${replyID}`;

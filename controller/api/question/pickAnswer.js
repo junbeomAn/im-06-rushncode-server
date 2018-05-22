@@ -1,9 +1,6 @@
 /*
-    POST /api/question/pickanswer
-    {
-        body,
-        questionID
-    }
+    POST /api/question/pickanswer/{answerID}
+    
 */
 
 const Promise = require("bluebird");
@@ -11,9 +8,8 @@ const Promise = require("bluebird");
 const updatePickStateAnswer = Promise.promisify(require("../../../model/updatePickStateAnswer"));
 const updateNumOfChooseAnswers = Promise.promisify(require("../../../model/updateNumOfChooseAnswers"));
 const checkUser = Promise.promisify(require("../../../model/checkUser"));
-const updateNumOfQuestions = Promise.promisify(require("../../../model/updateNumOfQuestions"));
-const checkQuestion = Promise.promisify(require("../../../model/checkQuestion"));
-
+const getQuestionID = Promise.promisify(require("../../../model/getQuestionID"));
+const updatePickedOfQuestion = Promise.promisify(require("../../../model/updatePickedOfQuestion"));
 const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
 
 
@@ -25,8 +21,8 @@ const pickAnswer = (req, res) => {
     checkUser(email).then((user) => {
       updateNumOfChooseAnswers(user.id).then(() => {
         updatePickStateAnswer(answerID).then(() => {
-          checkQuestion(answerID).then((questionID) => {
-            updateNumOfQuestions(questionID).then(() => {
+          getQuestionID(answerID).then((questionID) => {
+            updatePickedOfQuestion(questionID).then(() => {
               res.send();
             });
           });

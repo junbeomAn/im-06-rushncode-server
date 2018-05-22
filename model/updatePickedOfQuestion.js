@@ -1,7 +1,7 @@
 const db = require('../db');
 
 
-const updateNumOfQuestions = (questionID, callback) => {
+const updatePickedOfQuestion = (questionID, callback) => {
   const sql = `UPDATE questions 
                 SET exist_picked_ans = 1
                 WHERE questions.id=${questionID}`;
@@ -16,5 +16,5 @@ const updateNumOfQuestions = (questionID, callback) => {
   });
 }
 
-module.exports = updateNumOfQuestions;
+module.exports = updatePickedOfQuestion;
 

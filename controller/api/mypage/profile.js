@@ -9,7 +9,7 @@ const getProfileInfo = Promise.promisify(require("../../../model/getProfileInfo"
 const getUserInfo = Promise.promisify(require("../../../model/getUserInfo"));
 const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
 
-const getList = (req, res) => {
+const profile = (req, res) => {
   const token = req.headers['x-access-token'] || req.query.token;
   const userID = req.url.split('/')[2];
   var data = null;
@@ -39,4 +39,4 @@ const getList = (req, res) => {
   });
 }
 
-module.exports = getList;
+module.exports = profile;

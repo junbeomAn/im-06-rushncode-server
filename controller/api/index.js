@@ -3,10 +3,12 @@ const auth = require('./auth');
 const question = require('./question');
 const mypage = require('./mypage');
 const del = require('./delete');
+const sort = require('./sort');
 
 router.use('/auth', auth);
 router.use('/question', question);
 router.use('/mypage', mypage);
 router.use('/delete', del);
+router.use('/sort', sort);
 
 module.exports = router;

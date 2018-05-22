@@ -1,7 +1,18 @@
 const db = require("../db");
 
-const questionsList = (page, callback) => {
+const questionsList = (type, page, callback) => {
   const numOfQuestionPerPage = 20;
+  let orderBy = '';
+  if(type === 'normal') {
+    orderBy = 'id';
+  } else if(type === 'view') {
+    orderBy = 'view';
+  } else if(type === 'good') {
+    orderBy = 'good';
+  } else if(type === 'reward') {
+    orderBy = 'reward';
+  }
+
   const sql = `SELECT questions.*, 
                       users.username, 
                       GROUP_CONCAT(tags.tag) AS tags,
@@ -16,7 +27,7 @@ const questionsList = (page, callback) => {
                 ON userID = users.id
                 WHERE questions.deleted=0 
                 GROUP BY questions.id
-                ORDER BY id DESC LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
+                ORDER BY ${orderBy} DESC LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
   db.query(sql, function (err, result) {
     if (err) {
       callback(err, null);

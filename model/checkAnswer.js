@@ -2,8 +2,8 @@ const db = require('../db');
 
 
 
-const checkQuestion = (answerID, callback) => {
-  const sql = `SELECT answers.questionID FROM answers 
+const checkAnswer = (answerID, callback) => {
+  const sql = `SELECT answers.body, answers.questionID FROM answers 
     WHERE answers.id=${answerID}`;
 
   db.query(sql, function (err, result) {
@@ -20,4 +20,4 @@ const checkQuestion = (answerID, callback) => {
   });
 }
 
-module.exports = checkQuestion;
+module.exports = checkAnswer;

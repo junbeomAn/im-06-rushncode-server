@@ -1,7 +1,7 @@
 const db = require('../db');
 
 
-const searchQuestions = (string, callback) => {
+const searchQuestions = (string, page, callback) => {
   let str = '';
   let tmpArr = string.split(' ');
   const numOfQuestionPerPage = 5;
@@ -25,8 +25,8 @@ const searchQuestions = (string, callback) => {
                 ON userID = users.id
               WHERE questions.deleted=0 
                 AND ${str}
-              GROUP BY questions.id`;
-              //ORDER BY id DESC LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
+              GROUP BY questions.id
+              ORDER BY id DESC LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
 
   db.query(sql, function (err, result) {
     if (err) {

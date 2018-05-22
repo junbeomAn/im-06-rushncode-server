@@ -7,7 +7,7 @@ const sortByReward = require('./sortByReward');
 
 
 
-router.post('/search', search);
+router.post('/search/*', search);
 
 router.get('/view/*', sortByView);
 router.get('/good/*', sortByGood);

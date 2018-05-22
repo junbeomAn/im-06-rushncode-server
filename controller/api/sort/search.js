@@ -12,10 +12,18 @@ const searchQuestions = Promise.promisify(require("../../../model/searchQuestion
 
 const search = (req, res) => {
   const searchWords = req.body.data;
-  searchQuestions(searchWords, 1).then((result) => {
+  const page = req.url.split('/')[2];
+  searchQuestions(searchWords, page).then((questions) => {
+    for (var i = 0; i < questions.length; i++) {
+      if (questions[i].tags === null) {
+        questions[i].tags = [];
+      } else {
+        questions[i].tags = questions[i].tags.split(',');
+      }
+    }
     res.send({
-      message: good,
-      data: result
+      message: 'good',
+      data: questions
     });
   })
 }

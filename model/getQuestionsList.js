@@ -1,7 +1,11 @@
 const db = require("../db");
 
-const questionsList = (type, page, callback) => {
+const questionsList = (type, tag, page, callback) => {
   const numOfQuestionPerPage = 20;
+  const tagFilter = ``;
+  if(tag !== null) {
+    tagFilter += `HAVING tags LIKE '%${tag}%'`
+  }
   let orderBy = '';
   if(type === 'normal') {
     orderBy = 'id';
@@ -11,7 +15,10 @@ const questionsList = (type, page, callback) => {
     orderBy = 'good';
   } else if(type === 'reward') {
     orderBy = 'reward';
+  } else {
+    orderBy = 'id';
   }
+
 
   const sql = `SELECT questions.*, 
                       users.username, 
@@ -26,7 +33,7 @@ const questionsList = (type, page, callback) => {
                 INNER JOIN users 
                 ON userID = users.id
                 WHERE questions.deleted=0 
-                GROUP BY questions.id
+                GROUP BY questions.id ${tagFilter}
                 ORDER BY ${orderBy} DESC LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
   db.query(sql, function (err, result) {
     if (err) {

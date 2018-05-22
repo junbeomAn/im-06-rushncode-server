@@ -1,8 +1,8 @@
 /*
-POST /api/question/modifyquestion
+POST /api/question/modifyanswer
 {
   body,
-  questionID
+  answerID
 }
 */
 
@@ -12,7 +12,7 @@ const updateAnswer = Promise.promisify(require("../../../model/updateAnswer"));
 
 const modifyAnswer = (req, res) => {
   let target = {};
-  target.answerID = req.url.split('/')[2];
+  target.answerID = req.body.answerID;
   target.body = req.body.body;
 
 

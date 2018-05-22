@@ -11,7 +11,7 @@ const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
 
 
 const deleteReply = (req, res) => {
-  const questionID = req.url.split('/')[2];
+  const replyID = req.url.split('/')[2];
   const token = req.headers['x-access-token'] || req.query.token;
 
   verifyToken(token).then((email) => {

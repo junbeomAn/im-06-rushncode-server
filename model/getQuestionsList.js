@@ -1,11 +1,11 @@
 const db = require('../db');
 
-const questionsList = (type, tag, page, callback) => {
+const questionsList = (type, page, callback) => {
   const numOfQuestionPerPage = 20;
-  const tagFilter = ``;
-  if(tag !== null) {
-    tagFilter += `HAVING tags LIKE '%${tag}%'`
-  }
+  let tagFilter = '';
+  // if(tag !== null) {
+  //   tagFilter += `HAVING tags LIKE '%${tag}%'`
+  // }
   let orderBy = '';
   if(type === 'normal') {
     orderBy = 'id';

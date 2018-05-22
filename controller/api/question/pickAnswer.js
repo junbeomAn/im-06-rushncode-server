@@ -2,16 +2,15 @@
     POST /api/question/pickanswer
 */
 
-const Promise = require("bluebird");
+const Promise = require('bluebird');
 
-const updatePickStateAnswer = Promise.promisify(require("../../../model/updatePickStateAnswer"));
-const updateNumOfChooseAnswers = Promise.promisify(require("../../../model/updateNumOfChooseAnswers"));
-const checkUser = Promise.promisify(require("../../../model/checkUser"));
-const updateNumOfQuestions = Promise.promisify(require("../../../model/updateNumOfQuestions"));
-const checkQuestion = Promise.promisify(require("../../../model/checkQuestion"));
+const updatePickStateAnswer = Promise.promisify(require('../../../model/updatePickStateAnswer'));
+const updateNumOfChooseAnswers = Promise.promisify(require('../../../model/updateNumOfChooseAnswers'));
+const checkUser = Promise.promisify(require('../../../model/checkUser'));
+const updateNumOfQuestions = Promise.promisify(require('../../../model/updateNumOfQuestions'));
+const checkQuestion = Promise.promisify(require('../../../model/checkQuestion'));
 
-const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
-
+const verifyToken = Promise.promisify(require('../../utillity/verifyToken'));
 
 const pickAnswer = (req, res) => {
   const answerID = req.url.split('/')[2];
@@ -30,6 +29,6 @@ const pickAnswer = (req, res) => {
       });
     });
   });
-}
+};
 
 module.exports = pickAnswer;

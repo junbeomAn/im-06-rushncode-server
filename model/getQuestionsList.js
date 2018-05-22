@@ -14,6 +14,7 @@ const questionsList = (page, callback) => {
                 ON q_tag.tagID = tags.id 
                 INNER JOIN users 
                 ON userID = users.id
+                WHERE questions.deleted=0 
                 GROUP BY questions.id
                 ORDER BY id DESC LIMIT ${0 +
                   (page - 1) * numOfQuestionPerPage}, ${numOfQuestionPerPage}`;

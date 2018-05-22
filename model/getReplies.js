@@ -14,7 +14,7 @@ const getReplies = (target, callback) => {
               ON questions.id=replies.questionID
               INNER JOIN users
               ON users.id = replies.userID
-              WHERE questions.id=${target}`;
+              WHERE replies.deleted=0 AND questions.id=${target}`;
 
   db.query(sql, function (err, result) {
     if (err) {

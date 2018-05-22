@@ -1,5 +1,5 @@
 /*
-    POST /api/question/chanswer
+    POST /api/question/reply
     {
         body,
         questionID
@@ -17,10 +17,15 @@ const leaveReply = (req, res) => {
   const data = req.body;
   verifyToken(token).then((email) => {
     checkUser(email).then(result => {
-      const userID = result.id;
-      saveReply(data, userID).then(() => {
-        res.send('seccess');
-      })
+      if(result) {
+        const userID = result.id;
+        saveReply(data, userID).then(() => {
+          res.send('seccess');
+        })
+      } else {
+        res.send('로그인 해라');
+      }
+      
     });
   });
 }

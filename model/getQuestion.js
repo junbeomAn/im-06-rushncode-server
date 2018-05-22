@@ -4,6 +4,8 @@ const db = require('../db');
 
 const getQuestion = (target, callback) => {
   const sql = `SELECT 
+                users.username,
+                users.id AS userID,
                 questions.id AS qID, 
                 questions.title, 
                 questions.body AS qBody, 
@@ -12,6 +14,8 @@ const getQuestion = (target, callback) => {
                 questions.reward AS qReward,
                 questions.view AS qView
               FROM questions 
+              INNER JOIN users 
+              ON questions.userID = users.id
               WHERE questions.id=${target}`;
 
   db.query(sql, function (err, result) {

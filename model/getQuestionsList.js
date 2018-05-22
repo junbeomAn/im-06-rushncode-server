@@ -1,7 +1,7 @@
 const db = require("../db");
 
 const questionsList = (page, callback) => {
-  const numOfQuestionPerPage = 5;
+  const numOfQuestionPerPage = 20;
   const sql = `SELECT questions.*, 
                       users.username, 
                       GROUP_CONCAT(tags.tag) AS tags,

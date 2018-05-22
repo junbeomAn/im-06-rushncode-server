@@ -2,13 +2,15 @@ const db = require('../db');
 
 
 
-const checkUser = (target, callback) => {
-  const sql = `SELECT * FROM users WHERE email='${target}'`;
+const checkQuestion = (answerID, callback) => {
+  const sql = `SELECT answers.questionID FROM answers 
+    WHERE answers.id=${answerID}`;
 
   db.query(sql, function (err, result) {
     if (err) {
-      callback(err, null, null);
+      callback(err, null);
     } else {
+      //console.log(result);
       if (result.length !== 0) {
         callback(null, result[0]);
       } else {
@@ -18,4 +20,4 @@ const checkUser = (target, callback) => {
   });
 }
 
-module.exports = checkUser;
+module.exports = checkQuestion;

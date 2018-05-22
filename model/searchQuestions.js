@@ -27,7 +27,7 @@ const searchQuestions = (string, page, callback) => {
                 AND ${str}
               GROUP BY questions.id
               ORDER BY id DESC LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
-
+ 
   db.query(sql, function (err, result) {
     if (err) {
       callback(err, false);

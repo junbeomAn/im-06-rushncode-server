@@ -27,8 +27,8 @@ router.post('/goodanswer/*', handleAnswerGood);
 router.get('/getlist/*', getList);
 router.get('/displayq/*', displayQ);
 router.post('/good/*', handleQuestionGood);
-router.post('/modifyquestion/*', modifyQuestion);
-router.post('/modifyanswer/*', modifyAnswer);
+router.post('/modifyquestion', modifyQuestion);
+router.post('/modifyanswer', modifyAnswer);
 router.get('/getanswer/*', infoOfAnswer);
 
 

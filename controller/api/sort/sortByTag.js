@@ -1,14 +1,15 @@
 /*
-    GET /api/sort/reward
+    POST /api/sort/tag
 */
 const Promise = require("bluebird");
 
 const questionsList = Promise.promisify(require("../../../model/getQuestionsList"));
 
 
-const sortByReward = (req, res) => {
-  const page = req.url.split('/')[2];
-  questionsList('reward', null, null, page).then((questions) => {
+const sortByTag = (req, res) => {
+  const page = req.url.split('/')[3];
+  const tag = req.url.split('/')[2];
+  questionsList('normal', tag, null, page).then((questions) => {
     for (var i = 0; i < questions.length; i++) {
       if (questions[i].tags === null) {
         questions[i].tags = [];
@@ -23,4 +24,4 @@ const sortByReward = (req, res) => {
   })
 }
 
-module.exports = sortByReward;
+module.exports = sortByTag;

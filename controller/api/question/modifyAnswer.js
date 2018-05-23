@@ -1,25 +1,29 @@
 /*
-POST /api/question/modifyquestion
+POST /api/question/modifyanswer
 {
   body,
-  questionID
+  answerID
 }
 */
 
 const Promise = require("bluebird");
 
 const updateAnswer = Promise.promisify(require("../../../model/updateAnswer"));
+const checkAnswer = Promise.promisify(require("../../../model/checkAnswer"));
 
 const modifyAnswer = (req, res) => {
   let target = {};
-  target.answerID = req.url.split('/')[2];
+  target.answerID = req.body.answerID;
   target.body = req.body.body;
 
 
   updateAnswer(target).then(() => {
-    res.send({
-      message: 'modify Answer complete!'
-    });
+    checkAnswer(target.answerID).then((answer) => {
+      res.send({
+        message: 'modify Answer complete!',
+        questionID: answer.questionID
+      });
+    })
   })
 }
 

@@ -1,5 +1,5 @@
 /*
-    GET /api/sort/view
+    GET /api/sort/reward
 */
 const Promise = require("bluebird");
 

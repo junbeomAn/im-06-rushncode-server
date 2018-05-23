@@ -1,6 +1,6 @@
 const db = require('../db');
 
-const questionsList = (type, page, callback) => {
+const questionsList = (type, tag, page, callback) => {
   const numOfQuestionPerPage = 20;
   let tagFilter = '';
   // if(tag !== null) {

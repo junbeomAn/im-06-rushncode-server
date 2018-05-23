@@ -3,13 +3,13 @@
 */
 const Promise = require("bluebird");
 
-const getQuestionsList = Promise.promisify(require("../../../model/getQuestionsList"));
+const questionsList = Promise.promisify(require("../../../model/getQuestionsList"));
 
 
 const sortByTag = (req, res) => {
-  const page = req.url.split('/')[2];
-  const tag = req.body.tag;
-  getQuestionsList('normal', tag, page).then((questions) => {
+  const page = req.url.split('/')[3];
+  const tag = req.url.split('/')[2];
+  questionsList('normal', tag, null, page).then((questions) => {
     for (var i = 0; i < questions.length; i++) {
       if (questions[i].tags === null) {
         questions[i].tags = [];

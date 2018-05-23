@@ -7,13 +7,13 @@
 */
 const Promise = require("bluebird");
 
-const searchQuestions = Promise.promisify(require("../../../model/searchQuestions"));
+const questionsList = Promise.promisify(require("../../../model/getQuestionsList"));
 
 
 const search = (req, res) => {
   const searchWords = req.body.data;
   const page = req.url.split('/')[2];
-  searchQuestions(searchWords, page).then((questions) => {
+  questionsList('normal', null, searchWords, page).then((questions) => {
     for (var i = 0; i < questions.length; i++) {
       if (questions[i].tags === null) {
         questions[i].tags = [];

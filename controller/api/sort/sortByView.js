@@ -3,12 +3,12 @@
 */
 const Promise = require("bluebird");
 
-const getQuestionsList = Promise.promisify(require("../../../model/getQuestionsList"));
+const questionsList = Promise.promisify(require("../../../model/getQuestionsList"));
 
 
 const sortByView = (req, res) => {
   const page = req.url.split('/')[2];
-  getQuestionsList('view', null, page).then((questions) => {
+  questionsList('view', null, null, page).then((questions) => {
     for (var i = 0; i < questions.length; i++) {
       if (questions[i].tags === null) {
         questions[i].tags = [];

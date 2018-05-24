@@ -1,16 +1,23 @@
 const db = require("../db");
 
-const questionsList = (type, tag, searchWord, page, callback) => {
+const questionsList = (type, tag, searchWord, page, questionID, callback) => {
   const numOfQuestionPerPage = 20;
   let tagFilter = ``;
   let numOfQuestions = ``;
   let str = '';
+  let pageString = '';
   if(searchWord !== null) {
     let tmpArr = searchWord.split(' ');
     for(let i = 0;i < tmpArr.length;i++) {
       str += `AND questions.title LIKE '%${tmpArr[i]}%'`
     }
   }
+  if(questionID !== null) {
+    str += `AND questions.id=${questionID}`
+  }
+  if(page !== null) {
+    pageString = `LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
+  } 
   
   if(tag !== null) {
     tagFilter += `HAVING tags LIKE '%${tag}%'`;
@@ -57,8 +64,8 @@ const questionsList = (type, tag, searchWord, page, callback) => {
                 ON userID = users.id
                 WHERE questions.deleted=0 
                 ${str}
-                GROUP BY questions.id ${tagFilter}
-                ORDER BY ${orderBy} DESC LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
+                GROUP BY questions.id ${tagFilter}                
+                ORDER BY ${orderBy} DESC ${pageString}`;
   db.query(sql, function (err, result) {
     if (err) {
       callback(err, null);

@@ -1,10 +1,33 @@
 const db = require("../db");
 
-const questionsList = (type, tag, page, callback) => {
+const questionsList = (type, tag, searchWord, page, callback) => {
   const numOfQuestionPerPage = 20;
-  const tagFilter = ``;
+  let tagFilter = ``;
+  let numOfQuestions = ``;
+  let str = '';
+  if(searchWord !== null) {
+    let tmpArr = searchWord.split(' ');
+    for(let i = 0;i < tmpArr.length;i++) {
+      str += `AND questions.title LIKE '%${tmpArr[i]}%'`
+    }
+  }
+  
   if(tag !== null) {
-    tagFilter += `HAVING tags LIKE '%${tag}%'`
+    tagFilter += `HAVING tags LIKE '%${tag}%'`;
+    numOfQuestions += `(SELECT COUNT(*) FROM 
+                          (SELECT questions.*, 
+                            GROUP_CONCAT(tags.tag) AS tags
+                          FROM questions 
+                        LEFT JOIN q_tag 
+                          ON questions.id = q_tag.questionID 
+                        LEFT JOIN tags 
+                          ON q_tag.tagID = tags.id 
+                        INNER JOIN users 
+                          ON userID = users.id
+                        WHERE questions.deleted=0 
+                        GROUP BY questions.id HAVING tags LIKE '%${tag}%') AS tmp) AS countQuestions,`;
+  } else {
+    numOfQuestions += `(SELECT COUNT(*) FROM questions WHERE questions.deleted = 0 ${str}) AS countQuestions,`;
   }
   let orderBy = '';
   if(type === 'normal') {
@@ -23,7 +46,7 @@ const questionsList = (type, tag, page, callback) => {
   const sql = `SELECT questions.*, 
                       users.username, 
                       GROUP_CONCAT(tags.tag) AS tags,
-                      (SELECT COUNT(*) FROM questions) AS countQuestions,
+                      ${numOfQuestions}
                       (SELECT COUNT(*) FROM answers WHERE answers.questionID=questions.id) AS countAnswers 
                   FROM questions 
                 LEFT JOIN q_tag 
@@ -33,6 +56,7 @@ const questionsList = (type, tag, page, callback) => {
                 INNER JOIN users 
                 ON userID = users.id
                 WHERE questions.deleted=0 
+                ${str}
                 GROUP BY questions.id ${tagFilter}
                 ORDER BY ${orderBy} DESC LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
   db.query(sql, function (err, result) {

@@ -6,10 +6,7 @@ const searchQuestions = (string, page, callback) => {
   let tmpArr = string.split(' ');
   const numOfQuestionPerPage = 20;
   for(let i = 0;i < tmpArr.length;i++) {
-    if(i !== 0) {
-      str += ' AND '
-    }
-    str += `questions.title LIKE '%${tmpArr[i]}%'`
+    str += `AND questions.title LIKE '%${tmpArr[i]}%'`
   }
   const sql = `SELECT questions.*, 
                 users.username, 

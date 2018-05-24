@@ -14,17 +14,24 @@ const search = (req, res) => {
   const searchWords = req.body.data;
   const page = req.url.split('/')[2];
   questionsList('normal', null, searchWords, page).then((questions) => {
-    for (var i = 0; i < questions.length; i++) {
-      if (questions[i].tags === null) {
-        questions[i].tags = [];
-      } else {
-        questions[i].tags = questions[i].tags.split(',');
+    if(questions) {
+      for (var i = 0; i < questions.length; i++) {
+        if (questions[i].tags === null) {
+          questions[i].tags = [];
+        } else {
+          questions[i].tags = questions[i].tags.split(',');
+        }
       }
+      res.send({
+        message: 'good',
+        data: questions
+      });
+    } else {
+      res.send({
+        message: 'no result'
+      });
     }
-    res.send({
-      message: 'good',
-      data: questions
-    });
+    
   })
 }
 

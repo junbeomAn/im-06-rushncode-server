@@ -30,8 +30,8 @@ const postQuestion = (req, res) => {
       // console.log('@#@#@#@#@#@#####', result);
       const userID = result.id;
       saveQuestion(data, userID).then(() => {
-        checkQuestion(data, userID).then(resultID => {
-          const qID = resultID;
+        checkQuestion(data, userID, null).then(question => {
+          const qID = question.id;
           checkTag(tags).then(t => {
             saveQnTag(t, qID).then(a => {
               updateNumOfQuestions(userID).then(() => {

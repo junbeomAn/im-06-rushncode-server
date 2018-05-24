@@ -2,7 +2,13 @@ const db = require('../db');
 
 
 
-const getAnswers = (target, callback) => {
+const getAnswers = (questionID, userID, callback) => {
+  let str = '';
+  if(questionID && !userID) {
+    str = `answers.questionID=${questionID}`;
+  } else {
+    str = `answers.userID=${userID}`;
+  }
   const sql = `SELECT 
                 users.username AS username, 
                 users.id AS userID, 
@@ -14,7 +20,7 @@ const getAnswers = (target, callback) => {
               FROM answers 
               INNER JOIN users 
               ON users.id=answers.userID
-              WHERE answers.deleted=0 AND answers.questionID=${target}`;
+              WHERE answers.deleted=0 AND ${str}`;
 
   db.query(sql, function (err, result) {
     if (err) {

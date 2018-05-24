@@ -1,14 +1,14 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '5dnjfdlek!',
-  database: 'rushNcode',
-  // host: 'rushncode.cmoo15c3fd5p.ap-northeast-2.rds.amazonaws.com',
-  // user: 'rushncode',
-  // password: 'asdqwe123',
-  // database: 'rushncode',
+  // host: 'localhost',
+  // user: 'root',
+  // password: '5dnjfdlek!',
+  // database: 'rushNcode',
+  host: 'rushncode.cmoo15c3fd5p.ap-northeast-2.rds.amazonaws.com',
+  user: 'rushncode',
+  password: 'asdqwe123',
+  database: 'rushncode',
 });
 
 connection.connect((err) => {

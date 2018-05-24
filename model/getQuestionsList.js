@@ -1,18 +1,25 @@
 const db = require('../db');
 
-const questionsList = (type, tag, searchWord, page, callback) => {
+const questionsList = (type, tag, searchWord, page, userID, callback) => {
   const numOfQuestionPerPage = 20;
-  let tagFilter = ``;
-  let numOfQuestions = ``;
+  let tagFilter = '';
+  let numOfQuestions = '';
   let str = '';
-  if(searchWord !== null) {
-    let tmpArr = searchWord.split(' ');
-    for(let i = 0;i < tmpArr.length;i++) {
-      str += `AND questions.title LIKE '%${tmpArr[i]}%'`
+  let pageString = '';
+  if (searchWord !== null) {
+    const tmpArr = searchWord.split(' ');
+    for (let i = 0; i < tmpArr.length; i++) {
+      str += `AND questions.title LIKE '%${tmpArr[i]}%'`;
     }
   }
-  
-  if(tag !== null) {
+  if (userID !== null) {
+    str += `AND questions.userID=${userID}`;
+  }
+  if (page !== null) {
+    pageString = `LIMIT ${0 + (page - 1) * numOfQuestionPerPage}, ${numOfQuestionPerPage}`;
+  }
+
+  if (tag !== null) {
     tagFilter += `HAVING tags LIKE '%${tag}%'`;
     numOfQuestions += `(SELECT COUNT(*) FROM 
                           (SELECT questions.*, 
@@ -30,18 +37,17 @@ const questionsList = (type, tag, searchWord, page, callback) => {
     numOfQuestions += `(SELECT COUNT(*) FROM questions WHERE questions.deleted = 0 ${str}) AS countQuestions,`;
   }
   let orderBy = '';
-  if(type === 'normal') {
+  if (type === 'normal') {
     orderBy = 'id';
-  } else if(type === 'view') {
+  } else if (type === 'view') {
     orderBy = 'view';
-  } else if(type === 'good') {
+  } else if (type === 'good') {
     orderBy = 'good';
-  } else if(type === 'reward') {
+  } else if (type === 'reward') {
     orderBy = 'reward';
   } else {
     orderBy = 'id';
   }
-
 
   const sql = `SELECT questions.*, 
                       users.username, 
@@ -57,9 +63,9 @@ const questionsList = (type, tag, searchWord, page, callback) => {
                 ON userID = users.id
                 WHERE questions.deleted=0 
                 ${str}
-                GROUP BY questions.id ${tagFilter}
-                ORDER BY ${orderBy} DESC LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
-  db.query(sql, function (err, result) {
+                GROUP BY questions.id ${tagFilter}                
+                ORDER BY ${orderBy} DESC ${pageString}`;
+  db.query(sql, (err, result) => {
     if (err) {
       callback(err, null);
     } else {

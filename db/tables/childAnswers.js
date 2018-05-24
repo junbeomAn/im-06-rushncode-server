@@ -1,6 +1,6 @@
 const db = require("../index");
 
-const sql = `CREATE TABLE IF NOT EXISTS childAnswers (
+const sql = `CREATE TABLE IF NOT EXISTS childanswers (
   id INTEGER AUTO_INCREMENT,
   body VARCHAR(255), 
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,

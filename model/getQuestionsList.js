@@ -12,8 +12,8 @@ const questionsList = (type, tag, searchWord, page, userID, callback) => {
       str += `AND questions.title LIKE '%${tmpArr[i]}%'`;
     }
   }
-  if (userID !== null) {
-    str += `AND questions.userID=${userID}`;
+  if(userID !== null) {
+    str += `AND questions.userID=${userID}`
   }
   if (page !== null) {
     pageString = `LIMIT ${0 + (page - 1) * numOfQuestionPerPage}, ${numOfQuestionPerPage}`;

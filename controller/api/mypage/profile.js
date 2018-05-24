@@ -3,12 +3,13 @@
 */
 const Promise = require('bluebird');
 
-const checkUser = Promise.promisify(require('../../../model/checkUser'));
-const getPickedAnswers = Promise.promisify(require('../../../model/getPickedAnswers'));
-const getProfileInfo = Promise.promisify(require('../../../model/getProfileInfo'));
-const getUserInfo = Promise.promisify(require('../../../model/getUserInfo'));
-const getQuestionsList = Promise.promisify(require('../../../model/getQuestionsList'));
-const verifyToken = Promise.promisify(require('../../utillity/verifyToken'));
+const checkUser = Promise.promisify(require("../../../model/checkUser"));
+const getPickedAnswers = Promise.promisify(require("../../../model/getPickedAnswers"));
+const getProfileInfo = Promise.promisify(require("../../../model/getProfileInfo"));
+const getUserInfo = Promise.promisify(require("../../../model/getUserInfo"));
+const getQuestionsList = Promise.promisify(require("../../../model/getQuestionsList"));
+const getAnswers = Promise.promisify(require("../../../model/getAnswers"));
+const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
 
 const profile = (req, res) => {
   const token = req.headers['x-access-token'] || req.query.token;
@@ -27,26 +28,28 @@ const profile = (req, res) => {
             data.numOfAnswers = info.num_of_answers;
             data.numOfChooseAnswers = info.choose_answers;
             data.numOfQuestions = info.num_of_questions;
+            data.questions = [];
+            data.answers = [];
             getQuestionsList('normal', null, null, null, userID).then((questions) => {
-              if (questions) {
-                for (let i = 0; i < questions.length; i++) {
-                  if (questions[i].tags === null) {
-                    questions[i].tags = [];
-                  } else {
-                    questions[i].tags = questions[i].tags.split(',');
+              getAnswers(null, userID).then((answers) => {
+                if(questions) {
+                  for (var i = 0; i < questions.length; i++) {
+                    if (questions[i].tags === null) {
+                      questions[i].tags = [];
+                    } else {
+                      questions[i].tags = questions[i].tags.split(',');
+                    }
                   }
+                  data.questions = questions;
                 }
-                data.questions = questions;
+                if(answers) {
+                  data.answers = answers;
+                }
                 res.send({
                   message: 'good',
-                  data,
+                  data
                 });
-              } else {
-                res.send({
-                  message: '질문이 없습니다',
-                  data,
-                });
-              }
+              });
             });
           });
         });

@@ -1,5 +1,5 @@
 /*
-    GET /api/question/getlist
+    GET /api/mypage/profile/{userID}
 */
 const Promise = require("bluebird");
 
@@ -7,6 +7,7 @@ const checkUser = Promise.promisify(require("../../../model/checkUser"));
 const getPickedAnswers = Promise.promisify(require("../../../model/getPickedAnswers"));
 const getProfileInfo = Promise.promisify(require("../../../model/getProfileInfo"));
 const getUserInfo = Promise.promisify(require("../../../model/getUserInfo"));
+const getQuestionsList = Promise.promisify(require("../../../model/getQuestionsList"));
 const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
 
 const profile = (req, res) => {
@@ -26,12 +27,20 @@ const profile = (req, res) => {
             data.numOfAnswers = info.num_of_answers;
             data.numOfChooseAnswers = info.choose_answers;
             data.numOfQuestions = info.num_of_questions;
-        
-            res.send({
-              message: 'good',
-              data
+            getQuestionsList('normal', null, null, null, userID).then((questions) => {
+              for (var i = 0; i < questions.length; i++) {
+                if (questions[i].tags === null) {
+                  questions[i].tags = [];
+                } else {
+                  questions[i].tags = questions[i].tags.split(',');
+                }
+              }
+              data.questions = questions;
+              res.send({
+                message: 'good',
+                data
+              });
             });
-       
           });
         });
       });

@@ -30,7 +30,7 @@ const displayQ = (req, res) => {
           data.replies.push(repl[i]);
         }
       }
-      getAnswers(quesID).then((answ) => {
+      getAnswers(quesID, null).then((answ) => {
         //console.log(answ);
         data.answers = [];
         if (answ) {

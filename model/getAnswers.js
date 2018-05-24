@@ -10,21 +10,16 @@ const getAnswers = (questionID, userID, callback) => {
     str = `answers.userID=${userID}`;
   }
   const sql = `SELECT 
-                  users.username AS username, 
-                  users.id AS userID, 
-                  questions.id AS qID,
-                  questions.title AS qTitle,
-                  questions.reward AS qReward,
-                  answers.id AS aID, 
-                  answers.body AS aBody, 
-                  answers.updated_at AS aTime, 
-                  answers.good AS aGood, 
-                  answers.picked AS picked
-                FROM answers 
+                users.username AS username, 
+                users.id AS userID, 
+                answers.id AS aID, 
+                answers.body AS aBody, 
+                answers.updated_at AS aTime, 
+                answers.good AS aGood, 
+                answers.picked AS picked
+              FROM answers 
               INNER JOIN users 
-                ON users.id=answers.userID
-              INNER JOIN questions
-                ON questions.id=answers.questionID
+              ON users.id=answers.userID
               WHERE answers.deleted=0 AND ${str}`;
 
   db.query(sql, function (err, result) {

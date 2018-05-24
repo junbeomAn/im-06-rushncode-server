@@ -1,19 +1,24 @@
 const db = require("../db");
 
-const questionsList = (type, tag, searchWord, page, userID, callback) => {
+const questionsList = (type, tag, searchWord, page, userID, answerUserID, callback) => {
   const numOfQuestionPerPage = 20;
   let tagFilter = ``;
   let numOfQuestions = ``;
   let str = '';
   let pageString = '';
+  let joinStr = '';
   if(searchWord !== null) {
     let tmpArr = searchWord.split(' ');
     for(let i = 0;i < tmpArr.length;i++) {
-      str += `AND questions.title LIKE '%${tmpArr[i]}%'`
+      str += `AND questions.title LIKE '%${tmpArr[i]}%'`;
     }
   }
   if(userID !== null) {
-    str += `AND questions.userID=${userID}`
+    str += `AND questions.userID=${userID}`;
+  }
+  if(answerUserID !== null) {
+    str += `AND answers.userID=${answerUserID}`;
+    joinStr += `INNER JOIN answers ON answers.questionID=questions.id`;
   }
   if(page !== null) {
     pageString = `LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
@@ -62,6 +67,7 @@ const questionsList = (type, tag, searchWord, page, userID, callback) => {
                 ON q_tag.tagID = tags.id 
                 INNER JOIN users 
                 ON userID = users.id
+                ${joinStr}
                 WHERE questions.deleted=0 
                 ${str}
                 GROUP BY questions.id ${tagFilter}                

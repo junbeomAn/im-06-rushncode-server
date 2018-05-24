@@ -8,7 +8,7 @@ const questionsList = Promise.promisify(require("../../../model/getQuestionsList
 
 const sortByGood = (req, res) => {
   const page = req.url.split('/')[2];
-  questionsList('good', null, null, page, null).then((questions) => {
+  questionsList('good', null, null, page, null, null).then((questions) => {
     for (var i = 0; i < questions.length; i++) {
       if (questions[i].tags === null) {
         questions[i].tags = [];

@@ -8,6 +8,7 @@ const getPickedAnswers = Promise.promisify(require("../../../model/getPickedAnsw
 const getProfileInfo = Promise.promisify(require("../../../model/getProfileInfo"));
 const getUserInfo = Promise.promisify(require("../../../model/getUserInfo"));
 const getQuestionsList = Promise.promisify(require("../../../model/getQuestionsList"));
+const getAnswers = Promise.promisify(require("../../../model/getAnswers"));
 const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
 
 const profile = (req, res) => {
@@ -27,18 +28,27 @@ const profile = (req, res) => {
             data.numOfAnswers = info.num_of_answers;
             data.numOfChooseAnswers = info.choose_answers;
             data.numOfQuestions = info.num_of_questions;
+            data.questions = [];
+            data.answers = [];
             getQuestionsList('normal', null, null, null, userID).then((questions) => {
-              for (var i = 0; i < questions.length; i++) {
-                if (questions[i].tags === null) {
-                  questions[i].tags = [];
-                } else {
-                  questions[i].tags = questions[i].tags.split(',');
+              getAnswers(null, userID).then((answers) => {
+                if(questions) {
+                  for (var i = 0; i < questions.length; i++) {
+                    if (questions[i].tags === null) {
+                      questions[i].tags = [];
+                    } else {
+                      questions[i].tags = questions[i].tags.split(',');
+                    }
+                  }
+                  data.questions = questions;
                 }
-              }
-              data.questions = questions;
-              res.send({
-                message: 'good',
-                data
+                if(answers) {
+                  data.answers = answers;
+                }
+                res.send({
+                  message: 'good',
+                  data
+                });
               });
             });
           });

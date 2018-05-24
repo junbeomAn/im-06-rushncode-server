@@ -1,6 +1,6 @@
 const db = require("../db");
 
-const questionsList = (type, tag, searchWord, page, questionID, callback) => {
+const questionsList = (type, tag, searchWord, page, userID, callback) => {
   const numOfQuestionPerPage = 20;
   let tagFilter = ``;
   let numOfQuestions = ``;
@@ -12,8 +12,8 @@ const questionsList = (type, tag, searchWord, page, questionID, callback) => {
       str += `AND questions.title LIKE '%${tmpArr[i]}%'`
     }
   }
-  if(questionID !== null) {
-    str += `AND questions.id=${questionID}`
+  if(userID !== null) {
+    str += `AND questions.userID=${userID}`
   }
   if(page !== null) {
     pageString = `LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;

@@ -4,7 +4,7 @@ const sql = `CREATE TABLE IF NOT EXISTS users (
   id INTEGER AUTO_INCREMENT,
   email VARCHAR(255) NOT NULL, 
   username VARCHAR(255) NOT NULL, 
-  password VARCHAR(255) NOT NULL,     
+  password VARCHAR(255) NOT NULL,    
   total_reward INTEGER DEFAULT 0, 
   num_of_questions INTEGER DEFAULT 0, 
   choose_answers INTEGER DEFAULT 0, 

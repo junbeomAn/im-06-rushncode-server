@@ -13,7 +13,7 @@ const saveReply = (target, userID, callback) => {
     } else {
       console.log("reply is saved");
       console.log(result);
-      callback(null, 'save reply complete!')
+      callback(null, 'save reply complete!');
     }
   });
 }

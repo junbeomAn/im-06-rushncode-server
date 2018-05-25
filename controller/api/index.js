@@ -4,7 +4,7 @@ const question = require('./question');
 const mypage = require('./mypage');
 const del = require('./delete');
 const sort = require('./sort');
-const sort = upload('./upload');
+const upload = require('./upload');
 
 router.use('/auth', auth);
 router.use('/question', question);

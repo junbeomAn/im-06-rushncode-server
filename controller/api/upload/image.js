@@ -6,15 +6,25 @@
     }
 */
 const Promise = require("bluebird");
-
+const sharp = require("sharp");
 const questionsList = Promise.promisify(require("../../../model/getQuestionsList"));
 
 
 const image = (req, res) => {
+  //console.log(req);
+  //const token = req.headers['x-access-token'] || req.query.token;
   console.log(req);
-  let imageFile = req.files.file;
-
-  imageFile.mv(`${__dirname}/public/${req.body.filename}.jpg`, function(err) {
+  let imageFile = req.files.myFile;
+  // sharp(imageFile.data)
+  //   .resize(230, 230)
+  //   .toFile(`${process.cwd()}/client/public/image/1/${imageFile.name}`, (err, info) => {
+  //     if(err) {
+  //       res.status(500).send(err); 
+  //     } else {
+  //       res.send(`./public/image/1/${imageFile.name}`);
+  //     }
+  //   });
+  imageFile.mv(`${process.cwd()}/client/public/${imageFile.name}`, function(err) {
     if (err) {
       return res.status(500).send(err);
     }

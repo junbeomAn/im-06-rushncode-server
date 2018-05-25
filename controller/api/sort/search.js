@@ -13,7 +13,7 @@ const questionsList = Promise.promisify(require("../../../model/getQuestionsList
 const search = (req, res) => {
   const searchWords = req.body.data;
   const page = req.url.split('/')[2];
-  questionsList('normal', null, searchWords, page, null).then((questions) => {
+  questionsList('normal', null, searchWords, page, null, null).then((questions) => {
     if(questions) {
       for (var i = 0; i < questions.length; i++) {
         if (questions[i].tags === null) {

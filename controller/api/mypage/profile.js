@@ -8,7 +8,6 @@ const getPickedAnswers = Promise.promisify(require("../../../model/getPickedAnsw
 const getProfileInfo = Promise.promisify(require("../../../model/getProfileInfo"));
 const getUserInfo = Promise.promisify(require("../../../model/getUserInfo"));
 const getQuestionsList = Promise.promisify(require("../../../model/getQuestionsList"));
-const getAnswers = Promise.promisify(require("../../../model/getAnswers"));
 const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
 
 const profile = (req, res) => {
@@ -30,8 +29,8 @@ const profile = (req, res) => {
             data.numOfQuestions = info.num_of_questions;
             data.questions = [];
             data.answers = [];
-            getQuestionsList('normal', null, null, null, userID).then((questions) => {
-              getAnswers(null, userID).then((answers) => {
+            getQuestionsList('normal', null, null, null, userID, null).then((questions) => {
+              getQuestionsList('normal', null, null, null, null, userID).then((answers) => {
                 if(questions) {
                   for (var i = 0; i < questions.length; i++) {
                     if (questions[i].tags === null) {
@@ -43,6 +42,13 @@ const profile = (req, res) => {
                   data.questions = questions;
                 }
                 if(answers) {
+                  for (var i = 0; i < answers.length; i++) {
+                    if (answers[i].tags === null) {
+                      answers[i].tags = [];
+                    } else {
+                      answers[i].tags = answers[i].tags.split(',');
+                    }
+                  }
                   data.answers = answers;
                 }
                 res.send({

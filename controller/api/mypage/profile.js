@@ -27,6 +27,7 @@ const profile = (req, res) => {
             data.numOfAnswers = info.num_of_answers;
             data.numOfChooseAnswers = info.choose_answers;
             data.numOfQuestions = info.num_of_questions;
+            data.image = info.image;
             data.questions = [];
             data.answers = [];
             getQuestionsList('normal', null, null, null, userID, null).then((questions) => {

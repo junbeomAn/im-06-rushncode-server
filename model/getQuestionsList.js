@@ -7,18 +7,18 @@ const questionsList = (type, tag, searchWord, page, userID, answerUserID, callba
   let str = '';
   let pageString = '';
   let joinStr = '';
-  if(searchWord !== null) {
-    let tmpArr = searchWord.split(' ');
-    for(let i = 0;i < tmpArr.length;i++) {
+  if (searchWord !== null) {
+    const tmpArr = searchWord.split(' ');
+    for (let i = 0; i < tmpArr.length; i++) {
       str += `AND questions.title LIKE '%${tmpArr[i]}%'`;
     }
   }
-  if(userID !== null) {
+  if (userID !== null) {
     str += `AND questions.userID=${userID}`;
   }
-  if(answerUserID !== null) {
+  if (answerUserID !== null) {
     str += `AND answers.userID=${answerUserID}`;
-    joinStr += `INNER JOIN answers ON answers.questionID=questions.id`;
+    joinStr += 'INNER JOIN answers ON answers.questionID=questions.id';
   }
   if (page !== null) {
     pageString = `LIMIT ${0 + (page - 1) * numOfQuestionPerPage}, ${numOfQuestionPerPage}`;
@@ -56,6 +56,7 @@ const questionsList = (type, tag, searchWord, page, userID, answerUserID, callba
 
   const sql = `SELECT questions.*, 
                       users.username, 
+                      users.image_mini,                      
                       GROUP_CONCAT(tags.tag) AS tags,
                       ${numOfQuestions}
                       (SELECT COUNT(*) FROM answers WHERE answers.questionID=questions.id) AS countAnswers 

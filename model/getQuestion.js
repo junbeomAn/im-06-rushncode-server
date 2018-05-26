@@ -5,6 +5,7 @@ const db = require('../db');
 const getQuestion = (target, callback) => {
   const sql = `SELECT 
                 users.username,
+                users.image,
                 users.id AS userID,
                 questions.id AS qID, 
                 questions.title, 

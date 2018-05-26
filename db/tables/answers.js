@@ -1,4 +1,4 @@
-const db = require("../index");
+const db = require('../index');
 
 const sql = `CREATE TABLE IF NOT EXISTS answers (
   id INTEGER AUTO_INCREMENT,
@@ -15,7 +15,7 @@ const sql = `CREATE TABLE IF NOT EXISTS answers (
   FOREIGN KEY (questionID) REFERENCES questions(id)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci`;
 
-db.query(sql, function (err, result) {
+db.query(sql, (err, result) => {
   if (err) throw err;
-  console.log("add answers table");
+  console.log('add answers table');
 });

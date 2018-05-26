@@ -22,7 +22,6 @@ router.post('/reply', leaveReply);
 router.get('/gettag', getTag);
 router.post('/pickanswer/*', pickAnswer);
 
-
 router.post('/goodanswer/*', handleAnswerGood);
 router.get('/getlist/*', getList);
 router.get('/displayq/*', displayQ);
@@ -32,8 +31,4 @@ router.post('/modifyanswer', modifyAnswer);
 router.get('/getanswer/*', infoOfAnswer);
 
 
-
-
-
-
-module.exports = router
+module.exports = router;

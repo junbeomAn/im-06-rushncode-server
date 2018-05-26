@@ -3,7 +3,7 @@
     
 */
 
-const Promise = require("bluebird");
+const Promise = require('bluebird');
 
 const updatePickStateAnswer = Promise.promisify(require("../../../model/updatePickStateAnswer"));
 const updateNumOfChooseAnswers = Promise.promisify(require("../../../model/updateNumOfChooseAnswers"));
@@ -12,7 +12,6 @@ const getQuestionID = Promise.promisify(require("../../../model/getQuestionID"))
 const updatePickedOfQuestion = Promise.promisify(require("../../../model/updatePickedOfQuestion"));
 const checkQuestion = Promise.promisify(require("../../../model/checkQuestion"));
 const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
-
 
 const pickAnswer = (req, res) => {
   const answerID = req.url.split('/')[2];
@@ -42,6 +41,6 @@ const pickAnswer = (req, res) => {
       });
     });
   });
-}
+};
 
 module.exports = pickAnswer;

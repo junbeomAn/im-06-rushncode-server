@@ -2,9 +2,6 @@ const router = require('express').Router();
 
 const image = require('./image');
 
+router.post('/image/*', image);
 
-router.put('/image', image);
-
-
-
-module.exports = router
+module.exports = router;

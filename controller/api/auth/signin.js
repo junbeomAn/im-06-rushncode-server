@@ -13,18 +13,20 @@ const signin = (req, res) => {
   const { email, password } = req.body;
 
   const cryptPassword = (target, callback) => {
-    bcrypt.compare(password, target, function (err, truth) {
+    bcrypt.compare(password, target, (err, truth) => {
       if (err) {
         console.log(err);
         callback({
-          message: err
+          message: err,
         });
-      } else {
-        if (truth) {
-          // console.log('login success');
-          jwt.sign({
-            email: email
-          }, 'rushncode', {
+      } else if (truth) {
+        // console.log('login success');
+        jwt.sign(
+          {
+            email,
+          },
+          'rushncode',
+          {
             expiresIn: '7d',
             issuer: 'rushncode',
             subject: 'userInfo'
@@ -35,49 +37,44 @@ const signin = (req, res) => {
             } else {
               callback(null, {
                 message: 'login success',
-                token
+                token,
               });
             }
-          })
-        } else {
-          console.log('login fail');
-          callback({
-            message: 'password is not corret'
-          });
-        }
+          },
+        );
+      } else {
+        callback({
+          message: 'password is not corret',
+        });
       }
     });
-  }
+  };
 
   checkUser(email, (err, result) => {
     if (err) {
       res.send({
-        message: err
+        message: err,
       });
     } else {
-      console.log(result);
+      console.log('######', result.verified === 1);
       if (result) {
         if (result.verified === 1) {
           cryptPassword(result.password, (error, resultVerify) => {
             res.send(resultVerify);
-          })
+          });
         } else {
           res.send({
-            message: 'check your email & verify'
+            message: 'check your email & verify',
           });
         }
       } else {
         console.log('not exist');
         res.send({
-          message: 'email is not exist'
+          message: 'email is not exist',
         });
       }
     }
-  })
-
-
-}
-
-
+  });
+};
 
 module.exports = signin;

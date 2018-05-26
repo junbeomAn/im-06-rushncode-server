@@ -18,9 +18,6 @@ const saveQnTag = Promise.promisify(require("../../../model/saveQnTag"));
 const updateNumOfQuestions = Promise.promisify(require("../../../model/updateNumOfQuestions"));
 const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
 
-
-
-
 const postQuestion = (req, res) => {
   const { title, body, reward, tags } = req.body;
   const token = req.headers['x-access-token'] || req.query.token;
@@ -29,8 +26,8 @@ const postQuestion = (req, res) => {
   const data = { title, body, reward };
 
   verifyToken(token).then((email) => {
-    checkUser(email).then(result => {
-      //console.log('@#@#@#@#@#@#####', result);
+    checkUser(email).then((result) => {
+      // console.log('@#@#@#@#@#@#####', result);
       const userID = result.id;
       saveQuestion(data, userID).then(() => {
         checkQuestion(data, userID, null).then(question => {

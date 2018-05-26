@@ -1,30 +1,30 @@
-const db = require("../db");
+const db = require('../db');
 
 const questionsList = (type, tag, searchWord, page, userID, answerUserID, callback) => {
   const numOfQuestionPerPage = 20;
-  let tagFilter = ``;
-  let numOfQuestions = ``;
+  let tagFilter = '';
+  let numOfQuestions = '';
   let str = '';
   let pageString = '';
   let joinStr = '';
-  if(searchWord !== null) {
-    let tmpArr = searchWord.split(' ');
-    for(let i = 0;i < tmpArr.length;i++) {
+  if (searchWord !== null) {
+    const tmpArr = searchWord.split(' ');
+    for (let i = 0; i < tmpArr.length; i++) {
       str += `AND questions.title LIKE '%${tmpArr[i]}%'`;
     }
   }
-  if(userID !== null) {
+  if (userID !== null) {
     str += `AND questions.userID=${userID}`;
   }
-  if(answerUserID !== null) {
+  if (answerUserID !== null) {
     str += `AND answers.userID=${answerUserID}`;
-    joinStr += `INNER JOIN answers ON answers.questionID=questions.id`;
+    joinStr += 'INNER JOIN answers ON answers.questionID=questions.id';
   }
-  if(page !== null) {
-    pageString = `LIMIT ${0 + ((page - 1) * numOfQuestionPerPage)}, ${numOfQuestionPerPage}`;
-  } 
-  
-  if(tag !== null) {
+  if (page !== null) {
+    pageString = `LIMIT ${0 + (page - 1) * numOfQuestionPerPage}, ${numOfQuestionPerPage}`;
+  }
+
+  if (tag !== null) {
     tagFilter += `HAVING tags LIKE '%${tag}%'`;
     numOfQuestions += `(SELECT COUNT(*) FROM 
                           (SELECT questions.*, 
@@ -42,18 +42,17 @@ const questionsList = (type, tag, searchWord, page, userID, answerUserID, callba
     numOfQuestions += `(SELECT COUNT(*) FROM questions WHERE questions.deleted = 0 ${str}) AS countQuestions,`;
   }
   let orderBy = '';
-  if(type === 'normal') {
+  if (type === 'normal') {
     orderBy = 'id';
-  } else if(type === 'view') {
+  } else if (type === 'view') {
     orderBy = 'view';
-  } else if(type === 'good') {
+  } else if (type === 'good') {
     orderBy = 'good';
-  } else if(type === 'reward') {
+  } else if (type === 'reward') {
     orderBy = 'reward';
   } else {
     orderBy = 'id';
   }
-
 
   const sql = `SELECT questions.*, 
                       users.username, 
@@ -72,11 +71,11 @@ const questionsList = (type, tag, searchWord, page, userID, answerUserID, callba
                 ${str}
                 GROUP BY questions.id ${tagFilter}                
                 ORDER BY ${orderBy} DESC ${pageString}`;
-  db.query(sql, function (err, result) {
+  db.query(sql, (err, result) => {
     if (err) {
       callback(err, null);
     } else {
-      //console.log(result);
+      // console.log(result);
       if (result.length !== 0) {
         callback(null, result);
       } else {

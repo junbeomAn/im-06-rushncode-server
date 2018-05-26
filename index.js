@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(fileUpload());
-app.use('/', express.static(path.join(__dirname, '/client/build')));
+app.use('/', express.static(path.join(__dirname, '/public/build')));
 
 
 

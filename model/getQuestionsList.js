@@ -55,7 +55,7 @@ const questionsList = (type, tag, searchWord, page, userID, answerUserID, callba
   }
 
   const sql = `SELECT questions.*, 
-                      users.username,
+                      users.username, 
                       GROUP_CONCAT(tags.tag) AS tags,
                       ${numOfQuestions}
                       (SELECT COUNT(*) FROM answers WHERE answers.questionID=questions.id) AS countAnswers 

@@ -29,12 +29,21 @@ const image = (req, res) => {
           if(err) {
             res.status(500).send(err); 
           } else {
-            saveImagePath(userID, path).then(() => {
-              res.send({
-                message: 'success',
-                path: `../../images/profile/userImage-${user.id}/${user.id}.png`
+            sharp(imageFile.data)
+              .resize(40, 40)
+              .toFile(`${process.cwd()}/client/src/images/profile/userImage-${user.id}/${user.id}_mini.png`, (err, info) => {
+                if(err) {
+                  res.status(500).send(err); 
+                } else {
+            
+                  saveImagePath(userID, path).then(() => {
+                    res.send({
+                      message: 'success',
+                      path: `../../images/profile/userImage-${user.id}/${user.id}.png`
+                    });
+                  });
+                }
               });
-            })
           }
         });
   });

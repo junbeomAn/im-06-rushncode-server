@@ -2,9 +2,8 @@ const db = require('../db');
 
 
 
-const saveImagePath = (userID, path, callback) => {
-  const sql = `INSERT INTO users(image) 
-                VALUES('${path}')
+const updateImagePath = (userID, path, callback) => {
+  const sql = `UPDATE users SET users.image='${path}' 
                 WHERE users.id=${userID}`;
 
   db.query(sql, function (err, result) {
@@ -18,4 +17,4 @@ const saveImagePath = (userID, path, callback) => {
   });
 }
 
-module.exports = saveImagePath;
+module.exports = updateImagePath;

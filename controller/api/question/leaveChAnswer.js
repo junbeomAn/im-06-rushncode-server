@@ -19,7 +19,7 @@ const leaveChAnswer = (req, res) => {
     checkUser(email).then(result => {
       const userID = result.id;
       saveChAnswer(data, userID).then(() => {
-        res.send('ASFDASFERERER');
+        res.send('success');
       })
     });
   });

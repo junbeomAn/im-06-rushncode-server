@@ -13,6 +13,7 @@ const getAnswers = Promise.promisify(require("../../../model/getAnswers"));
 const getChAnswers = Promise.promisify(require("../../../model/getChAnswers"));
 const tagsOfQuestion = Promise.promisify(require("../../../model/gettagsOfQuestion"));
 const updateView = Promise.promisify(require("../../../model/updateView"));
+const getReplies = Promise.promisify(require("../../../model/getReplies"));
 
 
 const displayQ = (req, res) => {
@@ -21,36 +22,57 @@ const displayQ = (req, res) => {
   getQuestion(quesID).then((ques) => {
     //console.log(ques);
     data = ques;
-    getAnswers(quesID).then((answ) => {
-      //console.log(answ);
-      data.answers = {};
-      if (answ) {
-        answ.map((item, index) => {
-          data.answers[item.aID] = item;
-          data.answers[item.aID].chAnswers = [];
-        })
-      }
-      //console.log(data);
-      getChAnswers(quesID).then((chAnsw) => {
-        //console.log(chAnsw);
-        if (chAnsw) {
-          chAnsw.map((item, index) => {
-            data.answers[item.aID].chAnswers.push(item);
-          })
+    getReplies(quesID).then((repl) => {
+      data.replies = [];
+      console.log(repl);
+      if(repl) {
+        for(let i = 0;i < repl.length;i++) {
+          data.replies.push(repl[i]);
         }
-        tagsOfQuestion(quesID).then((tags) => {
-          console.log('tags@#@#@#@#', tags);
-          data.tags = [];
-          if (tags) {
-            tags.map(item => {
-              data.tags.push(item.tag)
-            })
+      }
+      getAnswers(quesID, null).then((answ) => {
+        //console.log(answ);
+        data.answers = [];
+        if (answ) {
+          for(let i = 0;i < answ.length;i++) {
+            data.answers.push(answ[i]);
+            data.answers[i].chAnswers = [];
           }
-          updateView(quesID).then(() => {
-            res.send({
-              message: 'good',
-              data
-            });
+          // answ.map((item, index) => {
+          //   data.answers[item.aID] = item;
+          //   data.answers[item.aID].chAnswers = [];
+          // })
+        }
+        //console.log(data);
+        getChAnswers(quesID).then((chAnsw) => {
+          console.log('#$#$',chAnsw);
+          if (chAnsw) {
+            for(let j = 0;j < data.answers.length;j++) {
+              for(let i = 0;i < chAnsw.length;i++) {
+                if(data.answers[j].aID === chAnsw[i].aID) {
+                  data.answers[j].chAnswers.push(chAnsw[i]);
+                }
+              }
+            }
+            
+            // chAnsw.map((item, index) => {
+            //   data.answers[item.aID].chAnswers.push(item);
+            // })
+          }
+          tagsOfQuestion(quesID).then((tags) => {
+            console.log('tags@#@#@#@#', tags);
+            data.tags = [];
+            if (tags) {
+              tags.map(item => {
+                data.tags.push(item.tag)
+              })
+            }
+            updateView(quesID).then(() => {
+              res.send({
+                message: 'good',
+                data
+              });
+            })
           })
         })
       })

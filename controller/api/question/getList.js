@@ -9,7 +9,7 @@ const tagsOfQuestion = Promise.promisify(require("../../../model/getTagsOfQuesti
 const getList = (req, res) => {
   const page = req.url.split('/')[2];
   var data = null;
-  questionsList(page).then((questions) => {
+  questionsList('normal', null, null, page, null, null).then((questions) => {
     for (var i = 0; i < questions.length; i++) {
       if (questions[i].tags === null) {
         questions[i].tags = [];
@@ -17,7 +17,6 @@ const getList = (req, res) => {
         questions[i].tags = questions[i].tags.split(',');
       }
     }
-    console.log(questions);
     res.send({
       message: 'good',
       data: questions

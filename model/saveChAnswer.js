@@ -3,10 +3,7 @@ const db = require('../db');
 
 
 const saveChAnswer = (target, userID, callback) => {
-  const {
-    body,
-    answerID
-  } = target;
+  const { body, answerID } = target;
   const sql = `INSERT INTO childanswers(body, answerID, userID) 
               VALUES('${body}', ${answerID}, ${userID})`;
 

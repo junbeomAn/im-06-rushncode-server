@@ -3,7 +3,7 @@ const db = require('../db');
 
 
 const updateImagePath = (userID, path, callback) => {
-  const sql = `UPDATE users SET users.image='${path}' 
+  const sql = `UPDATE users SET users.image='${path}${user.id}.png', users.image_mini='../../${path}${user.id}_mini.png'
                 WHERE users.id=${userID}`;
 
   db.query(sql, function (err, result) {

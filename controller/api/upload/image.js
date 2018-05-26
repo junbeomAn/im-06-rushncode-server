@@ -1,0 +1,45 @@
+/*
+    POST /api/upload/image
+
+    {
+      
+    }
+*/
+const Promise = require("bluebird");
+const sharp = require("sharp");
+const mkdirp = require("mkdirp");
+const updateImagePath = Promise.promisify(require("../../../model/updateImagePath"));
+const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
+
+
+const image = (req, res) => {
+  //console.log(req);
+  const token = req.headers['x-access-token'] || req.query.token;
+  console.log(req);
+  let imageFile = req.files.myFile;
+  verifyToken(token).then((email) => {
+    checkUser(email).then(user => {
+      mkdirp(`${process.cwd()}/client/src/images/profile/userImage-${user.id}`, function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+      });
+      const path = `userImage-${user.id}/${user.id}`;
+      sharp(imageFile.data)
+        .resize(230, 230)
+        .toFile(`${process.cwd()}/client/src/images/profile/userImage-${user.id}/${user.id}.png`, (err, info) => {
+          if(err) {
+            res.status(500).send(err); 
+          } else {
+            updateImagePath(user.id, path).then(() => {
+              res.send({
+                message: 'success',
+                path: `userImage-${user.id}/${user.id}`
+              });
+            });
+          }
+        });
+  });
+});
+}
+
+module.exports = image;

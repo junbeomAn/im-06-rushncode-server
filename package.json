@@ -23,12 +23,14 @@
     "cors": "^2.8.4",
     "eslint-config-airbnb": "^16.1.0",
     "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
     "jsonwebtoken": "^8.2.1",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "nodemailer": "^4.6.4",
     "path": "^0.12.7",
     "querystring": "^0.2.0",
-    "sequelize": "^4.37.7"
+    "sequelize": "^4.37.7",
+    "sharp": "^0.20.2"
   }
 }

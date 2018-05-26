@@ -7,7 +7,7 @@
 */
 const Promise = require("bluebird");
 const sharp = require("sharp");
-const saveImagePath = Promise.promisify(require("../../../model/saveImagePath"));
+const updateImagePath = Promise.promisify(require("../../../model/updateImagePath"));
 const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
 
 
@@ -22,7 +22,7 @@ const image = (req, res) => {
         if (err) console.error(err)
         else console.log('pow!')
       });
-      const path = `${process.cwd()}/client/src/images/profile/userImage-${user.id}/${user.id}.png`;
+      const path = `../../images/profile/userImage-${user.id}/`;
       sharp(imageFile.data)
         .resize(230, 230)
         .toFile(`${process.cwd()}/client/src/images/profile/userImage-${user.id}/${user.id}.png`, (err, info) => {
@@ -36,7 +36,7 @@ const image = (req, res) => {
                   res.status(500).send(err); 
                 } else {
             
-                  saveImagePath(userID, path).then(() => {
+                  updateImagePath(user.id, path).then(() => {
                     res.send({
                       message: 'success',
                       path: `../../images/profile/userImage-${user.id}/${user.id}.png`

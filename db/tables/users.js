@@ -11,7 +11,8 @@ const sql = `CREATE TABLE IF NOT EXISTS users (
   num_of_answers INTEGER DEFAULT 0,
   picked_answers INTEGER DEFAULT 0,
   verified BOOLEAN DEFAULT FALSE, 
-  image VARCHAR(255),
+  image VARCHAR(255) DEFAULT '../../images/profile/default/default.png',
+  image_mini VARCHAR(255) DEFAULT '../../../../images/profile/default/default_mini.png',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY(id)

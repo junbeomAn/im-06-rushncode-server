@@ -11,7 +11,8 @@ const getAnswers = (questionID, userID, callback) => {
   }
   const sql = `SELECT 
                 users.username AS username, 
-                users.id AS userID, 
+                users.id AS userID,
+                users.image AS aImage,
                 answers.id AS aID, 
                 answers.body AS aBody, 
                 answers.updated_at AS aTime, 

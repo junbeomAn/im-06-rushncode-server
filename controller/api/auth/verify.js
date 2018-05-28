@@ -4,7 +4,8 @@
 
 const Promise = require("bluebird");
 const jwt = require('jsonwebtoken');
-const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
+const checkUser = Promise.promisify(require("../../../model/check_user"));
+const verifyToken = Promise.promisify(require("../../utillity/verify_token"));
 
 
 const verify = (req, res) => {
@@ -14,9 +15,12 @@ const verify = (req, res) => {
 
   verifyToken(token)
     .then((email) => {
-      res.send({
-        success: true,
-        info: email
+      checkUser(email).then((user) => {
+        res.send({
+          success: true,
+          email: user.email,
+          userID: user.id
+        })
       })
     })
     .catch((err) => {

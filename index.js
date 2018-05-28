@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
 const fileUpload  = require('express-fileupload');
+var dotenv = require('dotenv')
 
 
 const requestHandle = require('./controller');
@@ -20,6 +21,8 @@ const a_user = require('./db/tables/a_user');
 
 
 const app = express();
+
+dotenv.config();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({

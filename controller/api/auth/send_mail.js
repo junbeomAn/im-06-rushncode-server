@@ -18,7 +18,7 @@ const sendMail = (email, id) => {
         from: 'rushncode@gmail.com',
         to: email,
         subject: 'Sending Email using Node.js',
-        text: `http://localhost:3001/api/auth/verifyemail/${id}/${hash}`
+        text: process.env.API_PROD + `/api/auth/verifyemail/${id}/${hash}`
       };
 
       transporter.sendMail(mailOptions, function (error, info) {

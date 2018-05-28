@@ -20,7 +20,7 @@ const verifyEmail = (req, res) => {
     bcrypt.compare(emails[0].email, hash, (err, result) => {
       if (result === true) {
         updateUserVerified(emails[0].email).then(() => {
-          res.redirect('http://localhost:3000/auth/signin');
+          res.redirect(process.env.URL_PROD + '/auth/signin');
         });
       } else {
         res.send('melong');

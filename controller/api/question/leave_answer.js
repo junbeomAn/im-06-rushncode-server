@@ -8,10 +8,10 @@
 
 const Promise = require("bluebird");
 
-const checkUser = Promise.promisify(require("../../../model/checkUser"));
-const saveAnswer = Promise.promisify(require("../../../model/saveAnswer"));
-const updateNumOfAnswers = Promise.promisify(require("../../../model/updateNumOfAnswers"));
-const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
+const checkUser = Promise.promisify(require("../../../model/check_user"));
+const saveAnswer = Promise.promisify(require("../../../model/save_answer"));
+const updateNumOfAnswers = Promise.promisify(require("../../../model/update_num_of_answers"));
+const verifyToken = Promise.promisify(require("../../utillity/verify_token"));
 
 const leaveAnswer = (req, res) => {
   const token = req.headers['x-access-token'] || req.query.token;

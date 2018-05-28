@@ -3,9 +3,9 @@
 */
 const Promise = require("bluebird");
 const db = require('../../../db/index');
-const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
-const updateAnswerGood = Promise.promisify(require("../../../model/updateAnswerGood"));
-const updateAnswerGoodUser = Promise.promisify(require("../../../model/updateAnswerGoodUser"));
+const verifyToken = Promise.promisify(require("../../utillity/verify_token"));
+const updateAnswerGood = Promise.promisify(require("../../../model/update_answer_good"));
+const updateAnswerGoodUser = Promise.promisify(require("../../../model/update_answer_good_user"));
 
 const handleAnswerGood = (req, res) => {
   const token = req.headers['x-access-token'] || req.query.token;

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const profile = require('./profile');
-const getAnswers = require('./getAnswers');
+const getAnswers = require('./get_answers');
 
 
 

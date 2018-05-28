@@ -8,8 +8,8 @@ POST /api/question/modifyanswer
 
 const Promise = require("bluebird");
 
-const updateAnswer = Promise.promisify(require("../../../model/updateAnswer"));
-const checkAnswer = Promise.promisify(require("../../../model/checkAnswer"));
+const updateAnswer = Promise.promisify(require("../../../model/update_answer"));
+const checkAnswer = Promise.promisify(require("../../../model/check_answer"));
 
 const modifyAnswer = (req, res) => {
   let target = {};

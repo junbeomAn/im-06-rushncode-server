@@ -8,7 +8,7 @@ POST /api/question/modifyquestion
 
 const Promise = require("bluebird");
 
-const checkAnswer = Promise.promisify(require("../../../model/checkAnswer"));
+const checkAnswer = Promise.promisify(require("../../../model/check_answer"));
 
 const infoOfAnswer = (req, res) => {
   const answerID = req.url.split('/')[2];

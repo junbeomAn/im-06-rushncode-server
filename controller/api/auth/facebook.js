@@ -5,9 +5,9 @@ const Promise = require("bluebird");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
 const querystring = require("querystring");
-const googleAuth = require("./client_secret_1057319403388-ng0dluqb41b5kk4gt37bot92piirjiu6.apps.googleusercontent.com");
-const saveUser = Promise.promisify(require("../../../model/saveUser"));
-const checkUser = Promise.promisify(require("../../../model/checkUser"));
+const google_auth = require("./client_secret_1057319403388-ng0dluqb41b5kk4gt37bot92piirjiu6.apps.googleusercontent.com");
+const save_user = Promise.promisify(require("../../../model/save_user"));
+const check_user = Promise.promisify(require("../../../model/check_user"));
 
 var makeToken = (email, callback) => {
   jwt.sign(
@@ -60,13 +60,13 @@ const github = (req, res) => {
             username: userInfo.data.name,
             password: null
           };
-          checkUser(user.email).then(result => {
+          check_user(user.email).then(result => {
             if (result) {
               makeToken(user.email).then(resultToken => {
                 res.send(resultToken);
               });
             } else {
-              saveUser(user, () => {
+              save_user(user, () => {
                 makeToken(user.email).then(resultToken => {
                   res.send(resultToken);
                 });

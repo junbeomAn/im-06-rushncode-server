@@ -7,7 +7,7 @@ POST /api/auth/signin
 */
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt-nodejs');
-const checkUser = require('../../../model/checkUser');
+const checkUser = require('../../../model/check_user');
 
 const signin = (req, res) => {
   const { email, password } = req.body;

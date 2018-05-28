@@ -10,7 +10,7 @@ POST /api/question/modifyquestion/{questionID}
 
 const Promise = require("bluebird");
 
-const updateQuestion = Promise.promisify(require("../../../model/updateQuestion"));
+const updateQuestion = Promise.promisify(require("../../../model/update_question"));
 
 const modifyQuestion = (req, res) => {
   let target = {};

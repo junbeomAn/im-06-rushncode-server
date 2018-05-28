@@ -1,14 +1,14 @@
 /*
-    GET /api/sort/good
+    GET /api/sort/view
 */
 const Promise = require("bluebird");
 
-const questionsList = Promise.promisify(require("../../../model/getQuestionsList"));
+const questionsList = Promise.promisify(require("../../../model/get_questions_list"));
 
 
-const sortByGood = (req, res) => {
+const sortByView = (req, res) => {
   const page = req.url.split('/')[2];
-  questionsList('good', null, null, page, null, null).then((questions) => {
+  questionsList('view', null, null, page, null, null).then((questions) => {
     for (var i = 0; i < questions.length; i++) {
       if (questions[i].tags === null) {
         questions[i].tags = [];
@@ -23,4 +23,4 @@ const sortByGood = (req, res) => {
   })
 }
 
-module.exports = sortByGood;
+module.exports = sortByView;

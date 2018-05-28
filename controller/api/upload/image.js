@@ -8,9 +8,9 @@
 const Promise = require('bluebird');
 const sharp = require('sharp');
 const mkdirp = require('mkdirp');
-const updateImagePath = Promise.promisify(require('../../../model/updateImagePath'));
-const checkUser = Promise.promisify(require('../../../model/checkUser'));
-const verifyToken = Promise.promisify(require('../../utillity/verifyToken'));
+const updateImagePath = Promise.promisify(require('../../../model/update_image_path'));
+const checkUser = Promise.promisify(require('../../../model/check_user'));
+const verifyToken = Promise.promisify(require('../../utillity/verify_token'));
 
 const image = (req, res) => {
   // console.log(req);

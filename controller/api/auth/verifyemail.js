@@ -8,8 +8,8 @@ POST /api/auth/verifyemail
 
 const bcrypt = require('bcrypt-nodejs');
 const Promise = require('bluebird');
-const getNotVerifiedEmails = Promise.promisify(require('../../../model/getNotVerifiedEmails'));
-const updateUserVerified = Promise.promisify(require('../../../model/updateUserVerified'));
+const getNotVerifiedEmails = Promise.promisify(require('../../../model/get_not_verified_emails'));
+const updateUserVerified = Promise.promisify(require('../../../model/update_user_verified'));
 
 const verifyEmail = (req, res) => {
   const index = req.url.slice(13).indexOf('/');

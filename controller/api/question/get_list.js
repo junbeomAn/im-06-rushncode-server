@@ -3,8 +3,8 @@
 */
 const Promise = require("bluebird");
 const db = require('../../../db/index');
-const questionsList = Promise.promisify(require("../../../model/getQuestionsList"));
-const tagsOfQuestion = Promise.promisify(require("../../../model/getTagsOfQuestion"));
+const questionsList = Promise.promisify(require("../../../model/get_questions_list"));
+const tagsOfQuestion = Promise.promisify(require("../../../model/get_tags_of_question"));
 
 const getList = (req, res) => {
   const page = req.url.split('/')[2];

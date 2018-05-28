@@ -1,9 +1,9 @@
 const router = require('express').Router();
 
-const deleteAnswer = require('./deleteAnswer');
-const deleteChAnswer = require('./deleteChAnswer');
-const deleteQuestion = require('./deleteQuestion');
-const deleteReply = require('./deleteReply');
+const deleteAnswer = require('./delete_Answer');
+const deleteChAnswer = require('./delete_ch_answer');
+const deleteQuestion = require('./delete_question');
+const deleteReply = require('./delete_reply');
 
 
 

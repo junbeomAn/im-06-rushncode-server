@@ -3,7 +3,7 @@
 */
 const Promise = require("bluebird");
 
-const questionsList = Promise.promisify(require("../../../model/getQuestionsList"));
+const questionsList = Promise.promisify(require("../../../model/get_questions_list"));
 
 
 const sortByTag = (req, res) => {

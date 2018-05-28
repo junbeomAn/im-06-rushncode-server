@@ -10,13 +10,13 @@
 
 const Promise = require("bluebird");
 
-const saveQuestion = Promise.promisify(require("../../../model/saveQuestion"));
-const checkUser = Promise.promisify(require("../../../model/checkUser"));
-const checkTag = Promise.promisify(require("../../../model/checkTag"));
-const checkQuestion = Promise.promisify(require("../../../model/checkQuestion"));
-const saveQnTag = Promise.promisify(require("../../../model/saveQnTag"));
-const updateNumOfQuestions = Promise.promisify(require("../../../model/updateNumOfQuestions"));
-const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
+const saveQuestion = Promise.promisify(require("../../../model/save_question"));
+const checkUser = Promise.promisify(require("../../../model/check_user"));
+const checkTag = Promise.promisify(require("../../../model/check_tag"));
+const checkQuestion = Promise.promisify(require("../../../model/check_question"));
+const saveQnTag = Promise.promisify(require("../../../model/save_q_n_tag"));
+const updateNumOfQuestions = Promise.promisify(require("../../../model/update_num_of_questions"));
+const verifyToken = Promise.promisify(require("../../utillity/verify_token"));
 
 const postQuestion = (req, res) => {
   const { title, body, reward, tags } = req.body;

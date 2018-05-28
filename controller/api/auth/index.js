@@ -2,8 +2,8 @@ const router = require('express').Router();
 const verify = require('./verify');
 const signin = require('./signin');
 const signup = require('./signup');
-const sendMail = require('./sendMail');
-const verifyEmail = require('./verifyemail');
+const send_mail = require('./send_mail');
+const verify_email = require('./verify_email');
 
 const github = require('./github');
 const google = require('./google');

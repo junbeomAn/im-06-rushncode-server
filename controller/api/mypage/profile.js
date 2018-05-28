@@ -3,12 +3,12 @@
 */
 const Promise = require('bluebird');
 
-const checkUser = Promise.promisify(require("../../../model/checkUser"));
-const getPickedAnswers = Promise.promisify(require("../../../model/getPickedAnswers"));
-const getProfileInfo = Promise.promisify(require("../../../model/getProfileInfo"));
-const getUserInfo = Promise.promisify(require("../../../model/getUserInfo"));
-const getQuestionsList = Promise.promisify(require("../../../model/getQuestionsList"));
-const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
+const checkUser = Promise.promisify(require("../../../model/check_user"));
+const getPickedAnswers = Promise.promisify(require("../../../model/get_picked_answers"));
+const getProfileInfo = Promise.promisify(require("../../../model/get_profile_info"));
+const getUserInfo = Promise.promisify(require("../../../model/get_user_info"));
+const getQuestionsList = Promise.promisify(require("../../../model/get_questions_list"));
+const verifyToken = Promise.promisify(require("../../utillity/verify_token"));
 
 const profile = (req, res) => {
   const token = req.headers['x-access-token'] || req.query.token;

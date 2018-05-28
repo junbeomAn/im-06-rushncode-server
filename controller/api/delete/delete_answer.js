@@ -5,9 +5,9 @@
 
 const Promise = require("bluebird");
 
-const checkUser = Promise.promisify(require("../../../model/checkUser"));
-const delAnswer = Promise.promisify(require("../../../model/delAnswer"));
-const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
+const checkUser = Promise.promisify(require("../../../model/check_user"));
+const delAnswer = Promise.promisify(require("../../../model/del_answer"));
+const verifyToken = Promise.promisify(require("../../utillity/verify_token"));
 
 
 const deleteAnswer = (req, res) => {

@@ -8,12 +8,12 @@ POST /api/question/displayq
 
 const Promise = require('bluebird');
 
-const getQuestion = Promise.promisify(require('../../../model/getQuestion'));
-const getAnswers = Promise.promisify(require('../../../model/getAnswers'));
-const getChAnswers = Promise.promisify(require('../../../model/getChAnswers'));
-const tagsOfQuestion = Promise.promisify(require('../../../model/gettagsOfQuestion'));
-const updateView = Promise.promisify(require('../../../model/updateView'));
-const getReplies = Promise.promisify(require('../../../model/getReplies'));
+const getQuestion = Promise.promisify(require('../../../model/get_question'));
+const getAnswers = Promise.promisify(require('../../../model/get_answers'));
+const getChAnswers = Promise.promisify(require('../../../model/get_ch_answers'));
+const tagsOfQuestion = Promise.promisify(require('../../../model/get_tags_of_question'));
+const updateView = Promise.promisify(require('../../../model/update_view'));
+const getReplies = Promise.promisify(require('../../../model/get_replies'));
 
 const displayQ = (req, res) => {
   let data = {};

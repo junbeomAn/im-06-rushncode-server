@@ -5,9 +5,9 @@
 
 const Promise = require('bluebird');
 
-const checkUser = Promise.promisify(require('../../../model/checkUser'));
-const delReply = Promise.promisify(require('../../../model/delReply'));
-const verifyToken = Promise.promisify(require('../../utillity/verifyToken'));
+const checkUser = Promise.promisify(require('../../../model/check_user'));
+const delReply = Promise.promisify(require('../../../model/del_reply'));
+const verifyToken = Promise.promisify(require('../../utillity/verify_token'));
 
 const deleteReply = (req, res) => {
   const replyID = req.url.split('/')[2];

@@ -5,13 +5,13 @@
 
 const Promise = require('bluebird');
 
-const updatePickStateAnswer = Promise.promisify(require("../../../model/updatePickStateAnswer"));
-const updateNumOfChooseAnswers = Promise.promisify(require("../../../model/updateNumOfChooseAnswers"));
-const checkUser = Promise.promisify(require("../../../model/checkUser"));
-const getQuestionID = Promise.promisify(require("../../../model/getQuestionID"));
-const updatePickedOfQuestion = Promise.promisify(require("../../../model/updatePickedOfQuestion"));
-const checkQuestion = Promise.promisify(require("../../../model/checkQuestion"));
-const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
+const updatePickStateAnswer = Promise.promisify(require("../../../model/update_pick_state_answer"));
+const updateNumOfChooseAnswers = Promise.promisify(require("../../../model/update_num_of_choose_answers"));
+const checkUser = Promise.promisify(require("../../../model/check_user"));
+const getQuestionID = Promise.promisify(require("../../../model/get_question_id"));
+const updatePickedOfQuestion = Promise.promisify(require("../../../model/update_picked_of_question"));
+const checkQuestion = Promise.promisify(require("../../../model/check_question"));
+const verifyToken = Promise.promisify(require("../../utillity/verify_token"));
 
 const pickAnswer = (req, res) => {
   const answerID = req.url.split('/')[2];

@@ -19,7 +19,7 @@ const image = (req, res) => {
   const imageFile = req.files.myFile;
   verifyToken(token).then((email) => {
     checkUser(email).then((user) => {
-      mkdirp(`${process.cwd()}/client/src/images/profile/userImage-${user.id}`, (err) => {
+      mkdirp(`${process.cwd()}/public/image/profile/userImage-${user.id}`, (err) => {
         if (err) console.error(err);
         else console.log('pow!');
       });
@@ -27,7 +27,7 @@ const image = (req, res) => {
       sharp(imageFile.data)
         .resize(230, 230)
         .toFile(
-          `${process.cwd()}/client/src/images/profile/userImage-${user.id}/${user.id}.png`,
+          `${process.cwd()}/public/image/profile/userImage-${user.id}/${user.id}.png`,
           (err, info) => {
             if (err) {
               res.status(500).send(err);
@@ -35,7 +35,7 @@ const image = (req, res) => {
               sharp(imageFile.data)
                 .resize(40, 40)
                 .toFile(
-                  `${process.cwd()}/client/src/images/profile/userImage-${user.id}/${
+                  `${process.cwd()}/public/image/profile/userImage-${user.id}/${
                     user.id
                   }_mini.png`,
                   (err, info) => {

@@ -15,4 +15,4 @@ router.get('/good/*', sortByGood);
 router.get('/reward/*', sortByReward);
 
 
-module.exports = router
+module.exports = router;

@@ -11,7 +11,7 @@ const getTag = require('./get_tag_list');
 const modifyQuestion = require('./modify_question');
 const modifyAnswer = require('./modify_answer');
 const leaveReply = require('./leave_reply');
-const pickAnswer = require('./pickanswer');
+const pickAnswer = require('./pick_answer');
 const infoOfAnswer = require('./info_of_answer');
 
 

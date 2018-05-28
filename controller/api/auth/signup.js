@@ -7,9 +7,9 @@
     }
 */
 const bcrypt = require('bcrypt-nodejs');
-const saveUser = require('../../../model/saveUser');
-const checkUser = require('../../../model/checkUser');
-const sendMail = require('./sendMail');
+const saveUser = require('../../../model/save_user');
+const checkUser = require('../../../model/check_user');
+const sendMail = require('./send_mail');
 
 const signup = (req, res) => {
   const {

@@ -5,9 +5,9 @@ const Promise = require("bluebird");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
 const querystring = require("querystring");
-const googleAuth = require("./client_secret_1057319403388-ng0dluqb41b5kk4gt37bot92piirjiu6.apps.googleusercontent.com");
-const saveUser = Promise.promisify(require("../../../model/saveUser"));
-const checkUser = Promise.promisify(require("../../../model/checkUser"));
+const google_auth = require("./client_secret_1057319403388-ng0dluqb41b5kk4gt37bot92piirjiu6.apps.googleusercontent.com");
+const save_user = Promise.promisify(require("../../../model/save_user"));
+const check_user = Promise.promisify(require("../../../model/check_user"));
 
 var makeToken = (email, callback) => {
   jwt.sign(
@@ -44,7 +44,7 @@ const github = (req, res) => {
 
   axios
     .get(
-      `https://graph.facebook.com/v3.0/oauth/access_token?client_id=235916540497077&redirect_uri=https://www.facebook.com/v3.0/dialog/oauth?client_id=235916540497077&redirect_uri=https://localhost:3000/auth/facebook&state=st=state123abc,ds=123456789&response_type=code&client_secret=9d32080a7858a054d18cf86dacb06957&code=${code}`
+      `https://graph.facebook.com/v3.0/oauth/access_token?client_id=235916540497077&redirect_uri=https://www.facebook.com/v3.0/dialog/oauth?client_id=235916540497077&redirect_uri=http://localhost:3000/auth/facebook&state=st=state123abc,ds=123456789&response_type=code&client_secret=9d32080a7858a054d18cf86dacb06957&code=${code}`
     )
     .then((result) => {
       const facebookToken = result.data.access_token;
@@ -60,13 +60,13 @@ const github = (req, res) => {
             username: userInfo.data.name,
             password: null
           };
-          checkUser(user.email).then(result => {
+          check_user(user.email).then(result => {
             if (result) {
               makeToken(user.email).then(resultToken => {
                 res.send(resultToken);
               });
             } else {
-              saveUser(user, () => {
+              save_user(user, () => {
                 makeToken(user.email).then(resultToken => {
                   res.send(resultToken);
                 });

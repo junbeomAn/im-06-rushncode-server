@@ -1,26 +1,26 @@
 /*
     GET /api/mypage/profile/{userID}
 */
-const Promise = require("bluebird");
+const Promise = require('bluebird');
 
-const checkUser = Promise.promisify(require("../../../model/checkUser"));
-const getPickedAnswers = Promise.promisify(require("../../../model/getPickedAnswers"));
-const getProfileInfo = Promise.promisify(require("../../../model/getProfileInfo"));
-const getUserInfo = Promise.promisify(require("../../../model/getUserInfo"));
-const getQuestionsList = Promise.promisify(require("../../../model/getQuestionsList"));
-const verifyToken = Promise.promisify(require("../../utillity/verifyToken"));
+const checkUser = Promise.promisify(require("../../../model/check_user"));
+const getPickedAnswers = Promise.promisify(require("../../../model/get_picked_answers"));
+const getProfileInfo = Promise.promisify(require("../../../model/get_profile_info"));
+const getUserInfo = Promise.promisify(require("../../../model/get_user_info"));
+const getQuestionsList = Promise.promisify(require("../../../model/get_questions_list"));
+const verifyToken = Promise.promisify(require("../../utillity/verify_token"));
 
 const profile = (req, res) => {
   const token = req.headers['x-access-token'] || req.query.token;
   const userID = req.url.split('/')[2];
-  var data = null;
+  let data = null;
   verifyToken(token).then((email) => {
-    checkUser(email).then(result => {
+    checkUser(email).then((result) => {
       getUserInfo(userID).then((user) => {
-        data = { 
+        data = {
           email: user.email,
-          username: user.username
-        }
+          username: user.username,
+        };
         getPickedAnswers(userID).then((pickedAnswers) => {
           getProfileInfo(userID).then((info) => {
             data.pickedAnswers = pickedAnswers.pickedAnswers;
@@ -63,6 +63,6 @@ const profile = (req, res) => {
       });
     });
   });
-}
+};
 
 module.exports = profile;

@@ -4,7 +4,7 @@
 const Promise = require("bluebird");
 const jwt = require('jsonwebtoken');
 const axios = require('axios');
-const githubAuth = require('./githubAuth');
+const githubAuth = require('./github_auth');
 const save_user = Promise.promisify(require("../../../model/save_user"));
 const check_user = Promise.promisify(require("../../../model/check_user"));
 

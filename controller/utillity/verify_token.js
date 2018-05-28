@@ -17,6 +17,6 @@ const verifyToken = (token, callback) => {
   } else {
     callback('invalid token', null);
   }
-}
+};
 
 module.exports = verifyToken;

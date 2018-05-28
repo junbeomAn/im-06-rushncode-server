@@ -32,6 +32,8 @@ app.use(bodyParser.json());
 app.use(fileUpload());
 app.use('/', express.static(path.join(__dirname, '/public/build')));
 
+app.set('view engine', 'html');
+
 
 
 requestHandle(app);

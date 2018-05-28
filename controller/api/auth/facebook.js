@@ -46,14 +46,14 @@ const github = (req, res) => {
     .get(
       `https://graph.facebook.com/v3.0/oauth/access_token?client_id=235916540497077&redirect_uri=https://www.facebook.com/v3.0/dialog/oauth?client_id=235916540497077&redirect_uri=http://localhost:3000/auth/facebook&state=st=state123abc,ds=123456789&response_type=code&client_secret=9d32080a7858a054d18cf86dacb06957&code=${code}`
     )
-    .then(result => {
+    .then((result) => {
       const facebookToken = result.data.access_token;
       console.log(facebookToken);
       axios
         .get(
           `https://graph.facebook.com/me?fields=id,name,email&access_token=${facebookToken}`
         )
-        .then(userInfo => {
+        .then((userInfo) => {
           console.log(userInfo.data);
           const user = {
             email: userInfo.data.email || userInfo.data.id + "@facebook",

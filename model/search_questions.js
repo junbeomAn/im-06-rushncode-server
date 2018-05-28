@@ -3,9 +3,8 @@ const db = require('../db');
 
 const searchQuestions = (string, page, callback) => {
   let str = '';
-  const numOfQuestionPerPage = 5;
   let tmpArr = string.split(' ');
-  
+  const numOfQuestionPerPage = 20;
   for(let i = 0;i < tmpArr.length;i++) {
     str += `AND questions.title LIKE '%${tmpArr[i]}%'`
   }

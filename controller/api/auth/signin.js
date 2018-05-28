@@ -68,7 +68,7 @@ const signin = (req, res) => {
           });
         }
       } else {
-        console.log('not exist');
+        console.log("not exist");
         res.send({
           message: 'email is not exist',
         });

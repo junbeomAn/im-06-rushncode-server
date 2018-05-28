@@ -4,15 +4,9 @@
 const Promise = require('bluebird');
 const jwt = require('jsonwebtoken');
 const axios = require('axios');
-<<<<<<< HEAD
-const githubAuth = require('./githubAuth');
-const saveUser = Promise.promisify(require('../../../model/saveUser'));
-const checkUser = Promise.promisify(require('../../../model/checkUser'));
-=======
 const githubAuth = require('./github_auth');
 const save_user = Promise.promisify(require("../../../model/save_user"));
 const check_user = Promise.promisify(require("../../../model/check_user"));
->>>>>>> 9169e0c1c83df8d19411702c6769e224d679e957
 
 let makeToken = (email, callback) => {
   jwt.sign(

@@ -40,7 +40,7 @@ const github = (req, res) => {
     code,
     client_id,
     client_secret,
-    redirect_uri: `${process.env.URL_PROD}/auth/google`
+    redirect_uri: `${process.env.URL_PROD}/auth/google`,
     grant_type: "authorization_code"
   };
   axios

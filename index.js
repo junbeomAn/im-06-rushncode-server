@@ -30,7 +30,6 @@ app.use(bodyParser.json());
 app.use(fileUpload());
 app.use('/', express.static(path.join(__dirname, '/public/build')));
 app.use('/mypage', express.static(path.join(__dirname, '/public/build')));
-app.use('/sort/*', express.static(path.join(__dirname, '/public/build')));
 app.use('/auth', express.static(path.join(__dirname, '/public/build')));
 app.use('/image', express.static(path.join(__dirname, '/public/image/profile')));
 

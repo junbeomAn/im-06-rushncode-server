@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const pug = require('pug');
 const bodyParser = require('body-parser');
 const fileUpload  = require('express-fileupload');
 var dotenv = require('dotenv')
@@ -31,9 +32,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(fileUpload());
 app.use('/', express.static(path.join(__dirname, '/public/build')));
+app.use('/image', express.static(path.join(__dirname, '/public/images')));
 
-app.set('view engine', 'html');
-
+app.set('view engine', 'pug')
 
 
 requestHandle(app);

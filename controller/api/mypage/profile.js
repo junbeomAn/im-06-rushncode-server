@@ -62,7 +62,12 @@ const profile = (req, res) => {
         });
       });
     });
-  });
+  }).catch((err) => {
+    console.log(err);
+    res.send({
+      message: 'invalid token'
+    });
+  })
 };
 
 module.exports = profile;

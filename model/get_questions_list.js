@@ -25,22 +25,24 @@ const questionsList = (type, tag, searchWord, page, userID, answerUserID, callba
   }
 
   if (tag !== null) {
-    tagFilter += `HAVING tags LIKE '%${tag}%'`;
-    numOfQuestions += `(SELECT COUNT(*) FROM 
-                          (SELECT questions.*, 
-                            GROUP_CONCAT(tags.tag) AS tags
-                          FROM questions 
-                        LEFT JOIN q_tag 
-                          ON questions.id = q_tag.questionID 
-                        LEFT JOIN tags 
-                          ON q_tag.tagID = tags.id 
-                        INNER JOIN users 
-                          ON userID = users.id
-                        WHERE questions.deleted=0 
-                        GROUP BY questions.id HAVING tags LIKE '%${tag}%') AS tmp) AS countQuestions,`;
-  } else {
-    numOfQuestions += `(SELECT COUNT(*) FROM questions WHERE questions.deleted = 0 ${str}) AS countQuestions,`;
-  }
+    str += `AND questions.id IN(SELECT q.id FROM questions q, q_tag qt, tags t WHERE q.id=qt.questionID AND qt.tagID=t.id AND t.tag='${tag}')`;
+  //   tagFilter += `HAVING tags LIKE '%${tag}%'`;
+  //   numOfQuestions += `(SELECT COUNT(*) FROM 
+  //                         (SELECT questions.*, 
+  //                           GROUP_CONCAT(tags.tag) AS tags
+  //                         FROM questions 
+  //                       LEFT JOIN q_tag 
+  //                         ON questions.id = q_tag.questionID 
+  //                       LEFT JOIN tags 
+  //                         ON q_tag.tagID = tags.id 
+  //                       INNER JOIN users 
+  //                         ON userID = users.id
+  //                       WHERE questions.deleted=0 
+  //                       GROUP BY questions.id HAVING tags LIKE '%${tag}%') AS tmp) AS countQuestions,`;
+  } 
+  //else {
+  //   numOfQuestions += `(SELECT COUNT(*) FROM questions WHERE questions.deleted = 0 ${str}) AS countQuestions,`;
+  // }
   let orderBy = '';
   if (type === 'normal') {
     orderBy = 'id';
@@ -57,7 +59,7 @@ const questionsList = (type, tag, searchWord, page, userID, answerUserID, callba
   const sql = `SELECT questions.*, 
                       users.username, 
                       GROUP_CONCAT(tags.tag) AS tags,
-                      ${numOfQuestions}
+                      (SELECT COUNT(*) FROM questions WHERE questions.deleted = 0 ${str}) AS countQuestions,
                       (SELECT COUNT(*) FROM answers WHERE answers.questionID=questions.id) AS countAnswers 
                   FROM questions 
                 LEFT JOIN q_tag 
@@ -69,7 +71,7 @@ const questionsList = (type, tag, searchWord, page, userID, answerUserID, callba
                 ${joinStr}
                 WHERE questions.deleted=0 
                 ${str}
-                GROUP BY questions.id ${tagFilter}                
+                GROUP BY questions.id              
                 ORDER BY ${orderBy} DESC ${pageString}`;
   db.query(sql, (err, result) => {
     if (err) {

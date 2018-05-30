@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const pug = require('pug');
 const bodyParser = require('body-parser');
-const fileUpload  = require('express-fileupload');
-var dotenv = require('dotenv')
-
+const fileUpload = require('express-fileupload');
+const dotenv = require('dotenv');
 
 const requestHandle = require('./controller');
 
@@ -19,34 +19,32 @@ const posts = require('./db/tables/posts');
 const replies = require('./db/tables/replies');
 const a_user = require('./db/tables/a_user');
 
-
 const app = express();
 
 dotenv.config();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: false,
 }));
 app.use(bodyParser.json());
 app.use(fileUpload());
 app.use('/', express.static(path.join(__dirname, '/public/build')));
-
-app.set('view engine', 'html');
-
-
+app.use('/mypage/*', express.static(path.join(__dirname, '/public/build')));
+app.use('/auth/*', express.static(path.join(__dirname, '/public/build')));
+app.use('/image', express.static(path.join(__dirname, '/public/image/profile')));
 
 requestHandle(app);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

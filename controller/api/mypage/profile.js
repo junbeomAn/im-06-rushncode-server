@@ -68,6 +68,7 @@ const profile = (req, res) => {
       console.log(err);
       res.send({
         message: 'invalid token',
+        data: {},
       });
     });
 };

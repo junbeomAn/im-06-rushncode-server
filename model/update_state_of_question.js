@@ -2,10 +2,11 @@ const db = require('../db');
 
 
 const updateStateOfQuestion = (questionID, type, callback) => {
+  let str = '';
   if(type === 'pick') {
-    const str = `exist_picked_ans = 1`;
+    str = 'exist_picked_ans = 1';
   } else if(type === 'break') {
-    const str = `breaked = 1`;
+    str = 'breaked = 1';
   }
   const sql = `UPDATE questions 
                 SET ${str}
@@ -22,4 +23,3 @@ const updateStateOfQuestion = (questionID, type, callback) => {
 }
 
 module.exports = updateStateOfQuestion;
-

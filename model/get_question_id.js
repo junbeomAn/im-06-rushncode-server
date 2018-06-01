@@ -12,7 +12,7 @@ const getQuestionID = (answerID, callback) => {
     } else {
       //console.log(result);
       if (result.length !== 0) {
-        callback(null, result[0].questionID);
+        callback(null, result[0]);
       } else {
         callback(null, null);
       }

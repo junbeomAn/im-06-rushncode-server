@@ -6,8 +6,8 @@ const jwt = require("jsonwebtoken");
 const axios = require("axios");
 const querystring = require("querystring");
 const googleAuth = require("./client_secret_1057319403388-ng0dluqb41b5kk4gt37bot92piirjiu6.apps.googleusercontent.com");
-const save_user = Promise.promisify(require("../../../model/save_user"));
-const check_user = Promise.promisify(require("../../../model/check_user"));
+const saveUser = Promise.promisify(require("../../../model/save_user"));
+const checkUser = Promise.promisify(require("../../../model/check_user"));
 
 var makeToken = (email, callback) => {
   jwt.sign(
@@ -30,7 +30,7 @@ var makeToken = (email, callback) => {
 
 makeToken = Promise.promisify(makeToken);
 
-const github = (req, res) => {
+const google = (req, res) => {
   const { code } = req.body;
 
   console.log(googleAuth.web.client_id);
@@ -62,14 +62,14 @@ const github = (req, res) => {
             username: userInfo.data.displayName,
             password: null
           };
-          check_user(user.email)
+          checkUser(user.email, null)
             .then(result => {
               if (result) {
                 makeToken(user.email)
                   .then(resultToken => res.send(resultToken))
                   .catch(err => console.log(err));
               } else {
-                save_user(user, () => {
+                saveUser(user, () => {
                   makeToken(user.email)
                     .then(resultToken => res.send(resultToken))
                     .catch(err => console.log(err));
@@ -82,5 +82,5 @@ const github = (req, res) => {
     .catch(err => console.log(err));
 };
 
-module.exports = github;
+module.exports = google;
 // https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=https://localhost:3000/auth/google&response_type=code&client_id=1057319403388-ng0dluqb41b5kk4gt37bot92piirjiu6.apps.googleusercontent.com

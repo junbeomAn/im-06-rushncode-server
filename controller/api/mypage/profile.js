@@ -16,7 +16,7 @@ const profile = (req, res) => {
   let data = null;
   verifyToken(token)
     .then((email) => {
-      checkUser(email).then((result) => {
+      checkUser(email, null).then((result) => {
         getUserInfo(userID).then((user) => {
           data = {
             email: user.email,

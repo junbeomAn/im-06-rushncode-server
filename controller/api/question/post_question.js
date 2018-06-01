@@ -28,7 +28,7 @@ const postQuestion = (req, res) => {
   const data = { title, body, reward };
 
   verifyToken(token).then((email) => {
-    checkUser(email).then((result) => {
+    checkUser(email, null).then((result) => {
       console.log('@#@#@#@#@#@#####', result);
       const userID = result.id;
       saveQuestion(data, userID).then(() => {

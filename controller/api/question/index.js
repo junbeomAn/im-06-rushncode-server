@@ -13,6 +13,7 @@ const modifyAnswer = require('./modify_answer');
 const leaveReply = require('./leave_reply');
 const pickAnswer = require('./pick_answer');
 const infoOfAnswer = require('./info_of_answer');
+const breakQuestion = require('./break_question');
 
 
 router.post('/post', postQuestion);
@@ -21,6 +22,7 @@ router.post('/chanswer', leaveChAnswer);
 router.post('/reply', leaveReply);
 router.get('/gettag', getTag);
 router.post('/pickanswer/*', pickAnswer);
+router.post('/breakquestion', breakQuestion);
 
 router.post('/goodanswer/*', handleAnswerGood);
 router.get('/getlist/*', getList);

@@ -31,7 +31,10 @@ const pickAnswer = (req, res) => {
               updatePickStateAnswer(answerID).then(() => {
                 updatePickedOfQuestion(questionID).then(() => {
                   res.send({
-                    message: 'good'
+                    message: 'good',
+                    data: {
+                      metaAddress: user.metaAddress
+                    }
                   });
                 });
               });
@@ -41,6 +44,6 @@ const pickAnswer = (req, res) => {
       });
     });
   });
-};
+}
 
 module.exports = pickAnswer;

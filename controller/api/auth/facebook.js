@@ -5,9 +5,9 @@ const Promise = require("bluebird");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
 const querystring = require("querystring");
-const google_auth = require("./client_secret_1057319403388-ng0dluqb41b5kk4gt37bot92piirjiu6.apps.googleusercontent.com");
-const save_user = Promise.promisify(require("../../../model/save_user"));
-const check_user = Promise.promisify(require("../../../model/check_user"));
+const googleAuth = require("./client_secret_1057319403388-ng0dluqb41b5kk4gt37bot92piirjiu6.apps.googleusercontent.com");
+const saveUser = Promise.promisify(require("../../../model/save_user"));
+const checkUser = Promise.promisify(require("../../../model/check_user"));
 
 var makeToken = (email, callback) => {
   jwt.sign(
@@ -36,7 +36,7 @@ var makeToken = (email, callback) => {
 
 makeToken = Promise.promisify(makeToken);
 
-const github = (req, res) => {
+const facebook = (req, res) => {
   const code = req.body.code;
 
   console.log(googleAuth.web.client_id);
@@ -60,13 +60,13 @@ const github = (req, res) => {
             username: userInfo.data.name,
             password: null
           };
-          check_user(user.email).then(result => {
+          checkUser(user.email, null).then(result => {
             if (result) {
               makeToken(user.email).then(resultToken => {
                 res.send(resultToken);
               });
             } else {
-              save_user(user, () => {
+              saveUser(user, () => {
                 makeToken(user.email).then(resultToken => {
                   res.send(resultToken);
                 });
@@ -77,5 +77,5 @@ const github = (req, res) => {
     });
 };
 
-module.exports = github;
+module.exports = facebook;
 // https://www.facebook.com/v3.0/dialog/oauth?client_id=235916540497077&redirect_uri=https://localhost:3000/auth/facebook&state=st=state123abc,ds=123456789&response_type=code&scope=email,public_profile

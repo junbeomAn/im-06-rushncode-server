@@ -30,8 +30,7 @@ let makeToken = (email, callback) => {
 makeToken = Promise.promisify(makeToken);
 
 const github = (req, res) => {
-  const code = req.body.code;
-  console.log(code);
+  const { code, metaAddress } = req.body;
   const { clientId, clientSecret } = githubAuth;
 
   axios
@@ -43,7 +42,8 @@ const github = (req, res) => {
         const user = {
           email: `${userInfo.data.login}@github`,
           username: userInfo.data.login,
-          password: null
+          password: null,
+          metaAddress
         };
 
         checkUser(user.email, null)

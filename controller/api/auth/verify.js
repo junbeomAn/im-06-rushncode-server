@@ -17,6 +17,7 @@ const verify = (req, res) => {
     .then((email) => {
       checkUser(email, null)
       .then((user) => {
+        console.log(user);
         res.send({
           success: true,
           email: user.email,

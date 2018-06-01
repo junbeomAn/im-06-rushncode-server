@@ -33,7 +33,7 @@ const pickAnswer = (req, res) => {
                     res.send({
                       message: 'good',
                       data: {
-                        metaAddress: ansUser.metaAddress
+                        metaAddress: ansUser.meta_address
                       }
                     });
                   });

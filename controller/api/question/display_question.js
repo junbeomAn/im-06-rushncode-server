@@ -37,12 +37,7 @@ const displayQ = (req, res) => {
             data.answers.push(answ[i]);
             data.answers[i].chAnswers = [];
           }
-          // answ.map((item, index) => {
-          //   data.answers[item.aID] = item;
-          //   data.answers[item.aID].chAnswers = [];
-          // })
         }
-        // console.log(data);
         getChAnswers(quesID).then((chAnsw) => {
           console.log('#$#$', chAnsw);
           if (chAnsw) {
@@ -53,10 +48,6 @@ const displayQ = (req, res) => {
                 }
               }
             }
-
-            // chAnsw.map((item, index) => {
-            //   data.answers[item.aID].chAnswers.push(item);
-            // })
           }
           tagsOfQuestion(quesID).then((tags) => {
             console.log('tags@#@#@#@#', tags);

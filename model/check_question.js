@@ -2,7 +2,6 @@ const db = require('../db');
 
 const checkQuestion = (target, userID, questionID, callback) => {
   let str = '';
-  console.log(target.body);
   if (target !== null && userID !== null) {
     str += `WHERE (title=${target.title} AND body=${target.body} AND userID=${userID})`;
   } else if (questionID !== null) {

@@ -3,10 +3,11 @@ const db = require('../db');
 
 
 const checkUser = (email, userID, callback) => {
+  let str = '';
   if(email !== null) {
-    const str = `email='${email}'`;
+    str = `email='${email}'`;
   } else {
-    const str = `id='${userID}'`;
+    str = `id='${userID}'`;
   }
   const sql = `SELECT * FROM users WHERE ${str}`;
 

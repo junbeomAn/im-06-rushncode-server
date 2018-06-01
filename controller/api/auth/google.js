@@ -31,7 +31,7 @@ var makeToken = (email, callback) => {
 makeToken = Promise.promisify(makeToken);
 
 const google = (req, res) => {
-  const { code } = req.body;
+  const { code, metaAddress } = req.body;
 
   console.log(googleAuth.web.client_id);
   const { client_id, client_secret } = googleAuth.web;
@@ -60,7 +60,8 @@ const google = (req, res) => {
           const user = {
             email: userInfo.data.emails[0].value,
             username: userInfo.data.displayName,
-            password: null
+            password: null,
+            metaAddress
           };
           checkUser(user.email, null)
             .then(result => {

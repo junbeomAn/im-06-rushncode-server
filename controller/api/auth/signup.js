@@ -54,7 +54,7 @@ const signup = (req, res) => {
                   success: result
                 });
               } else {
-                checkUser(email, (err, result) => {
+                checkUser(email, null, (err, result) => {
                   if (err) {
                     console.log(err)
                   } else {

@@ -17,7 +17,7 @@ const leaveAnswer = (req, res) => {
   const token = req.headers['x-access-token'] || req.query.token;
   const data = req.body;
   verifyToken(token).then((email) => {
-    checkUser(email).then((result) => {
+    checkUser(email, null).then((result) => {
       if(result) {
         const userID = result.id;
         saveAnswer(data, userID).then(() => {

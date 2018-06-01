@@ -15,7 +15,8 @@ const verify = (req, res) => {
 
   verifyToken(token)
     .then((email) => {
-      checkUser(email).then((user) => {
+      checkUser(email, null)
+      .then((user) => {
         res.send({
           success: true,
           email: user.email,

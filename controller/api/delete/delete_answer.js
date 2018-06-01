@@ -15,7 +15,7 @@ const deleteAnswer = (req, res) => {
   const token = req.headers['x-access-token'] || req.query.token;
 
   verifyToken(token).then((email) => {
-    checkUser(email).then((user) => {
+    checkUser(email, null).then((user) => {
       delAnswer(answerID).then(() => {
         res.send();
       })

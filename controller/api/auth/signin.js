@@ -50,7 +50,7 @@ const signin = (req, res) => {
     });
   };
 
-  checkUser(email, (err, result) => {
+  checkUser(email, null, (err, result) => {
     if (err) {
       res.send({
         message: err,

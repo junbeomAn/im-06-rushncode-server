@@ -20,7 +20,7 @@ const signup = (req, res) => {
   } = req.body;
   console.log('@@@@@@@', req.body);
 
-  checkUser(email, (err, result) => {
+  checkUser(email, null, (err, result) => {
     if (err) {
       console.log(err);
       res.send({

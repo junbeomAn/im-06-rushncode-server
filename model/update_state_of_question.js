@@ -2,9 +2,9 @@ const db = require('../db');
 
 const updateStateOfQuestion = (questionID, type, callback) => {
   let str = '';
-  if (type === 'pick') {
+  if(type === 'pick') {
     str = 'exist_picked_ans = 1';
-  } else if (type === 'break') {
+  } else if(type === 'break') {
     str = 'breaked = 1';
   }
   const sql = `UPDATE questions 

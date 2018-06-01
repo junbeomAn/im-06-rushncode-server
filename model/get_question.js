@@ -15,7 +15,7 @@ const getQuestion = (target, callback) => {
                 questions.reward AS qReward,
                 questions.view AS qView, 
                 questions.exist_picked_ans,
-                questions.breaked 
+                questions.breaked
               FROM questions 
               INNER JOIN users 
               ON questions.userID = users.id

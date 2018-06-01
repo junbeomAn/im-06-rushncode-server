@@ -15,7 +15,8 @@ const signup = (req, res) => {
   const {
     email,
     username,
-    password
+    password,
+    metaAddress
   } = req.body;
   console.log('@@@@@@@', req.body);
 
@@ -43,7 +44,8 @@ const signup = (req, res) => {
             const user = {
               email,
               username,
-              password: hash
+              password: hash,
+              metaAddress
             }
             saveUser(user, (err, result) => {
               if (err) {

@@ -68,18 +68,9 @@ const profile = (req, res) => {
       console.log(err);
       res.send({
         message: 'invalid token',
+        data: {},
       });
     });
-<<<<<<< HEAD
-  }).catch((err) => {
-    console.log(err);
-    res.send({
-      message: 'invalid token',
-      data: {}
-    });
-  })
-=======
->>>>>>> ca5bfdc0ecef7ddd6361b7a4a9ea0fd2c1397fa8
 };
 
 module.exports = profile;

@@ -41,7 +41,6 @@ app.use((req, res, next) => {
   err.status = 404;
   next(err);
 });
-
 // error handler
 app.use((err, req, res, next) => {
   // set locals, only providing error in development

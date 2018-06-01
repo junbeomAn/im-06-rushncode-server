@@ -1,6 +1,6 @@
 /*
     POST /api/question/pickanswer/{answerID}
-    
+
 */
 
 const Promise = require('bluebird');
@@ -23,8 +23,8 @@ const pickAnswer = (req, res) => {
         checkQuestion(null, null, answer.questionID).then((question) => {
           if(question.exist_picked_ans === 1) {
             res.send({
-              message: 'already picked answer of this question'
-            })
+              message: 'already picked answer of this question',
+            });
           } else {
             updateNumOfChooseAnswers(user.id).then(() => {
               updatePickStateAnswer(answerID).then(() => {
@@ -45,6 +45,6 @@ const pickAnswer = (req, res) => {
       });
     });
   });
-}
+};
 
 module.exports = pickAnswer;

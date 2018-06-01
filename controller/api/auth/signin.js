@@ -43,7 +43,7 @@ const signin = (req, res) => {
           },
         );
       } else {
-        callback({
+        callback(null, {
           message: 'password is not corret',
         });
       }

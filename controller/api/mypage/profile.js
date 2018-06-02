@@ -29,6 +29,7 @@ const profile = (req, res) => {
               data.numOfChooseAnswers = info.choose_answers;
               data.numOfQuestions = info.num_of_questions;
               data.image = info.image;
+              data.total_reward = info.total_reward;
               data.questions = [];
               data.answers = [];
               getQuestionsList('normal', null, null, null, userID, null).then((questions) => {

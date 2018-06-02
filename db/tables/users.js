@@ -11,7 +11,7 @@ const sql = `CREATE TABLE IF NOT EXISTS users (
   num_of_answers INTEGER DEFAULT 0,
   picked_answers INTEGER DEFAULT 0,
   verified BOOLEAN DEFAULT FALSE, 
-  metaAddress VARCHAR(100),
+  meta_address VARCHAR(100),
   image VARCHAR(255) DEFAULT 'default/default',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

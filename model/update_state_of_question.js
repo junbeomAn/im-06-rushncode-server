@@ -1,6 +1,5 @@
 const db = require('../db');
 
-
 const updateStateOfQuestion = (questionID, type, callback) => {
   let str = '';
   if(type === 'pick') {
@@ -12,7 +11,7 @@ const updateStateOfQuestion = (questionID, type, callback) => {
                 SET ${str}
                 WHERE questions.id=${questionID}`;
 
-  db.query(sql, function (err, result) {
+  db.query(sql, (err, result) => {
     if (err) {
       callback(err, false);
     } else {
@@ -20,6 +19,6 @@ const updateStateOfQuestion = (questionID, type, callback) => {
       callback(null, true);
     }
   });
-}
+};
 
 module.exports = updateStateOfQuestion;

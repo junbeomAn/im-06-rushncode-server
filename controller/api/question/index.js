@@ -16,6 +16,7 @@ const infoOfAnswer = require('./info_of_answer');
 const breakQuestion = require('./break_question');
 
 
+
 router.post('/post', postQuestion);
 router.post('/answer', leaveAnswer);
 router.post('/chanswer', leaveChAnswer);
@@ -31,6 +32,8 @@ router.post('/good/*', handleQuestionGood);
 router.post('/modifyquestion', modifyQuestion);
 router.post('/modifyanswer', modifyAnswer);
 router.get('/getanswer/*', infoOfAnswer);
+
+
 
 
 module.exports = router;

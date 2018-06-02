@@ -18,7 +18,7 @@ const image = (req, res) => {
   console.log(req);
   const imageFile = req.files.myFile;
   verifyToken(token).then((email) => {
-    checkUser(email).then((user) => {
+    checkUser(email, null).then((user) => {
       mkdirp(`${process.cwd()}/public/image/profile/userImage-${user.id}`, (err) => {
         if (err) console.error(err);
         else console.log('pow!');

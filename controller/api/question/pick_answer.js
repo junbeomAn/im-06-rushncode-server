@@ -11,6 +11,7 @@ const checkUser = Promise.promisify(require("../../../model/check_user"));
 const getQuestionID = Promise.promisify(require("../../../model/get_question_id"));
 const updateStateOfQuestion = Promise.promisify(require("../../../model/update_state_of_question"));
 const checkQuestion = Promise.promisify(require("../../../model/check_question"));
+const updateTotalReward = Promise.promisify(require("../../../model/update_total_reward"));
 const verifyToken = Promise.promisify(require("../../utillity/verify_token"));
 
 const pickAnswer = (req, res) => {
@@ -30,12 +31,14 @@ const pickAnswer = (req, res) => {
               updatePickStateAnswer(answerID).then(() => {
                 updateStateOfQuestion(question.id, 'pick').then(() => {
                   checkUser(null, answer.userID).then((ansUser) => {
-                    res.send({
-                      message: 'good',
-                      data: {
-                        metaAddress: ansUser.meta_address
-                      }
-                    });
+                    updateTotalReward(question.reward, answer.userID).then(() => {
+                      res.send({
+                        message: 'good',
+                        data: {
+                          metaAddress: ansUser.meta_address
+                        }
+                      });
+                    })
                   });
                 }).catch(err => console.log(err))
               });

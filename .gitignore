@@ -24,6 +24,8 @@ yarn-error.log*
 /client
 /.vscode
 
-package-lock.json
-yarn.lock
+yarn.lock*
+package-lock.json*
+
+nginx_signing.key
 

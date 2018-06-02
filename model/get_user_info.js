@@ -7,7 +7,7 @@ const checkUser = (userID, callback) => {
 
   db.query(sql, function (err, result) {
     if (err) {
-      callback(err, null, null);
+      callback(err, null);
     } else {
       if (result.length !== 0) {
         callback(null, result[0]);

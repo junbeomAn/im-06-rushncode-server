@@ -25,14 +25,13 @@ const profile = (req, res) => {
             username: user.username,
           };
           getUsersByRank().then((usersByRank) => {
-            
-            for(let i = 0;i < usersByRank.length;i++) {
-              if(usersByRank[i].id === userID) {
-                rank = i+1;
+            for (let i = 0; i < usersByRank.length; i++) {
+              if (usersByRank[i].id === userID) {
+                rank = i + 1;
                 break;
               }
             }
-            //console.log('###', rank);
+            // console.log('###', rank);
             getPickedAnswers(userID).then((pickedAnswers) => {
               getProfileInfo(userID).then((info) => {
                 data.pickedAnswers = pickedAnswers.pickedAnswers;
@@ -74,7 +73,7 @@ const profile = (req, res) => {
                 });
               });
             });
-          })
+          });
         });
       });
     })

@@ -45,7 +45,7 @@ const signup = (req, res) => {
               email,
               username,
               password: hash,
-              metaAddress
+              meta_address: metaAddress
             }
             saveUser(user, (err, result) => {
               if (err) {

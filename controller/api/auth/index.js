@@ -2,11 +2,12 @@ const router = require('express').Router();
 const verify = require('./verify');
 const signin = require('./signin');
 const signup = require('./signup');
-const sendMail = require('./sendMail');
-const verifyEmail = require('./verifyemail');
+const verifyEmail = require('./verify_email');
 
 const github = require('./github');
-const test = require('./test');
+const google = require('./google');
+const facebook = require('./facebook');
+
 
 
 router.get('/verify', verify);
@@ -15,7 +16,8 @@ router.post('/signin', signin);
 router.get('/verifyemail/*', verifyEmail);
 
 router.post('/github', github);
+router.post('/google', google);
+router.post('/facebook', facebook);
 
-router.post('/test', test);
 
 module.exports = router

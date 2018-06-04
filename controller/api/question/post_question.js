@@ -37,7 +37,10 @@ const postQuestion = (req, res) => {
           checkTag(tags).then((t) => {
             saveQnTag(t, qID).then((a) => {
               updateNumOfQuestions(userID).then(() => {
-                res.send('success');
+                res.send({
+                  message: 'success',
+                  questionID: qID,
+                });
               });
             });
           });

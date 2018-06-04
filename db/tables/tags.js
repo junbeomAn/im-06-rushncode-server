@@ -1,4 +1,4 @@
-const db = require("../index");
+const db = require('../index');
 
 const sql = `CREATE TABLE IF NOT EXISTS tags (
   id INTEGER AUTO_INCREMENT,
@@ -6,9 +6,9 @@ const sql = `CREATE TABLE IF NOT EXISTS tags (
   PRIMARY KEY(id)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci`;
 
-db.query(sql, function (err, result) {
+db.query(sql, (err, result) => {
   if (err) throw err;
-  console.log("add tags table");
+  console.log('add tags table');
 });
 
 var query = `INSERT INTO tags(tag) SELECT *
@@ -16,17 +16,16 @@ var query = `INSERT INTO tags(tag) SELECT *
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'javascript')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });
-
 
 var query = `INSERT INTO tags(tag) SELECT *
               FROM (SELECT ('react.js')) AS tmp
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'react.js')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });
 
@@ -35,7 +34,7 @@ var query = `INSERT INTO tags(tag) SELECT *
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'node.js')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });
 
@@ -44,7 +43,7 @@ var query = `INSERT INTO tags(tag) SELECT *
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'vue.js')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });
 
@@ -53,7 +52,7 @@ var query = `INSERT INTO tags(tag) SELECT *
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'angular.js')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });
 
@@ -62,7 +61,7 @@ var query = `INSERT INTO tags(tag) SELECT *
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'swift')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });
 
@@ -71,7 +70,7 @@ var query = `INSERT INTO tags(tag) SELECT *
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'C')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });
 
@@ -80,7 +79,7 @@ var query = `INSERT INTO tags(tag) SELECT *
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'java')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });
 
@@ -89,7 +88,7 @@ var query = `INSERT INTO tags(tag) SELECT *
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'C#')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });
 
@@ -98,7 +97,7 @@ var query = `INSERT INTO tags(tag) SELECT *
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'C++')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });
 
@@ -107,7 +106,7 @@ var query = `INSERT INTO tags(tag) SELECT *
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'python')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });
 
@@ -116,6 +115,6 @@ var query = `INSERT INTO tags(tag) SELECT *
               WHERE NOT EXISTS 
               (SELECT * FROM tags WHERE tags.tag = 'Mysql')`;
 
-db.query(query, function (err, result) {
+db.query(query, (err, result) => {
   if (err) throw err;
 });

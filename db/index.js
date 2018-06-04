@@ -1,21 +1,23 @@
-const mysql = require("mysql");
-
-
+const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "asdqwe123",
-  database: "rushNcode"
+  // host: 'localhost',
+  // user: 'root',
+  // password: '5dnjfdlek!',
+  // database: 'rushNcode',
+  host: 'rushncode.cmoo15c3fd5p.ap-northeast-2.rds.amazonaws.com',
+  user: 'rushncode',
+  password: 'asdqwe123',
+  database: 'rushncode',
 });
 
-connection.connect(function (err) {
+connection.connect((err) => {
   if (err) {
-    console.error("error connecting: " + err.stack);
+    console.error(`error connecting: ${err.stack}`);
     return;
   }
 
-  console.log("connected as id " + connection.threadId);
+  console.log(`connected as id ${connection.threadId}`);
 });
 
 // connection.query("SET FOREIGN_KEY_CHECKS = 0");
@@ -29,6 +31,7 @@ connection.connect(function (err) {
 // connection.query("DROP TABLE IF EXISTS `users`");
 // connection.query("DROP TABLE IF EXISTS `q_tag`");
 // connection.query("DROP TABLE IF EXISTS `tags`");
+// connection.query("DROP TABLE IF EXISTS `a_user`");
 // connection.query("SET FOREIGN_KEY_CHECKS = 1");
 
 module.exports = connection;

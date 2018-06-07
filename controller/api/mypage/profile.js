@@ -41,6 +41,14 @@ const profile = (req, res) => {
                 data.image = info.image;
                 data.total_reward = info.total_reward;
                 data.rank = rank;
+                data.percentageOfPicked =
+                  info.num_of_questions === 0
+                    ? 0
+                    : info.choose_answers / info.num_of_questions * 100;
+                data.percentageOfChoose =
+                  info.num_of_answers === 0
+                    ? 0
+                    : pickedAnswers.pickedAnswers / info.num_of_answers * 100;
                 data.questions = [];
                 data.answers = [];
                 getQuestionsList('normal', null, null, null, userID, null).then((questions) => {

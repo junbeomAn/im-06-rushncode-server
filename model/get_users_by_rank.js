@@ -3,7 +3,9 @@ const db = require('../db');
 
 
 const getUsersByRank = (callback) => {
-  const sql = `SELECT users.id, users.username, users.total_reward, users.image FROM users ORDER BY total_reward DESC`;
+  const sql = `SELECT users.id, users.username, users.total_reward, users.image, users.state_comment
+                FROM users 
+                ORDER BY total_reward DESC`;
 
   db.query(sql, function (err, result) {
     if (err) {

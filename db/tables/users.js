@@ -11,6 +11,7 @@ const sql = `CREATE TABLE IF NOT EXISTS users (
   num_of_answers INTEGER DEFAULT 0,
   picked_answers INTEGER DEFAULT 0,
   verified BOOLEAN DEFAULT FALSE, 
+  state_comment VARCHAR(100) DEFAULT '안녕하세요. 잘 부탁드립니다!!',
   meta_address VARCHAR(100),
   image VARCHAR(255) DEFAULT 'default/default',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,

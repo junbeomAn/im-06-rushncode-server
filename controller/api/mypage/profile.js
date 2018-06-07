@@ -25,16 +25,16 @@ const profile = (req, res) => {
             username: user.username,
           };
           getUsersByRank().then((usersByRank) => {
-            
-            for(let i = 0;i < usersByRank.length;i++) {
-              if(usersByRank[i].id === userID) {
-                rank = i+1;
+            for (let i = 0; i < usersByRank.length; i++) {
+              if (usersByRank[i].id === userID) {
+                rank = i + 1;
                 break;
               }
             }
-            //console.log('###', rank);
+            // console.log('###', rank);
             getPickedAnswers(userID).then((pickedAnswers) => {
               getProfileInfo(userID).then((info) => {
+                data.status = info.state_comment;
                 data.pickedAnswers = pickedAnswers.pickedAnswers;
                 data.numOfAnswers = info.num_of_answers;
                 data.numOfChooseAnswers = info.choose_answers;
@@ -42,8 +42,11 @@ const profile = (req, res) => {
                 data.image = info.image;
                 data.total_reward = info.total_reward;
                 data.rank = rank;
+                data.percentageOfPicked = info.num_of_questions === 0 ? 0 : (info.choose_answers/info.num_of_questions) * 100;
+                data.percentageOfChoose = info.num_of_answers === 0 ? 0 : (pickedAnswers.pickedAnswers/info.num_of_answers) * 100;
                 data.questions = [];
                 data.answers = [];
+                
                 getQuestionsList('normal', null, null, null, userID, null).then((questions) => {
                   getQuestionsList('normal', null, null, null, null, userID).then((answers) => {
                     if (questions) {
@@ -74,7 +77,7 @@ const profile = (req, res) => {
                 });
               });
             });
-          })
+          });
         });
       });
     })

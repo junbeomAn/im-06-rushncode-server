@@ -39,7 +39,7 @@ const postQuestion = (req, res) => {
               updateNumOfQuestions(userID).then(() => {
                 res.send({
                   message: 'success',
-                  questionID: qID
+                  questionID: qID,
                 });
               });
             });

@@ -29,11 +29,13 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(fileUpload());
 app.use('/', express.static(path.join(__dirname, '/public/build')));
-app.use('/mypage/*', express.static(path.join(__dirname, '/public/build')));
-app.use('/auth/*', express.static(path.join(__dirname, '/public/build')));
 app.use('/image', express.static(path.join(__dirname, '/public/image/profile')));
-
 requestHandle(app);
+app.get('*', function(req, res) {
+  console.log('hahahahgagagagag');
+  res.sendFile(path.resolve(__dirname, 'public/build/index.html'));
+});
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

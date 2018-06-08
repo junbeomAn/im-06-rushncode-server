@@ -6,115 +6,27 @@ const sql = `CREATE TABLE IF NOT EXISTS tags (
   PRIMARY KEY(id)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci`;
 
+const tags = [ 'Ajax', 'Android', 'Angular', 'apache', 'AWS', 'bash', 'C', 'C#', 'C++', 'CSS',
+              'database', 'dJango', 'eclipse', 'Editor', 'express', 'Flask', 'github', 'go',
+              'GraphQL', 'iOS', 'javascript', 'JSON', 'Kotlin', 'linux', 'MariaDB', 'Markdown',
+              'MongoDB', 'MySQL', 'Next', 'node.js', 'objective-c', 'oracle', 'postgreSQL',
+              'python', 'React', 'ReactNative', 'Redux', 'Ruby', 'ruby-on-rails', 'socket',
+              'Solidity', 'spring', 'SQL', 'swift', 'type script', 'visual studio', 'vue',
+              'windows', 'xcode', '기타' ]
 db.query(sql, (err, result) => {
   if (err) throw err;
   console.log('add tags table');
 });
 
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('javascript')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'javascript')`;
+for(let i = 0;i < tags.length;i++) {
+  var query = `INSERT INTO tags(tag) SELECT *
+  FROM (SELECT ('${tags[i]}')) AS tmp
+  WHERE NOT EXISTS 
+  (SELECT * FROM tags WHERE tags.tag = '${tags[i]}')`;
 
-db.query(query, (err, result) => {
+  db.query(query, (err, result) => {
   if (err) throw err;
-});
+  });
+}
 
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('react.js')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'react.js')`;
 
-db.query(query, (err, result) => {
-  if (err) throw err;
-});
-
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('node.js')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'node.js')`;
-
-db.query(query, (err, result) => {
-  if (err) throw err;
-});
-
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('vue.js')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'vue.js')`;
-
-db.query(query, (err, result) => {
-  if (err) throw err;
-});
-
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('angular.js')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'angular.js')`;
-
-db.query(query, (err, result) => {
-  if (err) throw err;
-});
-
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('swift')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'swift')`;
-
-db.query(query, (err, result) => {
-  if (err) throw err;
-});
-
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('C')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'C')`;
-
-db.query(query, (err, result) => {
-  if (err) throw err;
-});
-
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('java')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'java')`;
-
-db.query(query, (err, result) => {
-  if (err) throw err;
-});
-
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('C#')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'C#')`;
-
-db.query(query, (err, result) => {
-  if (err) throw err;
-});
-
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('C++')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'C++')`;
-
-db.query(query, (err, result) => {
-  if (err) throw err;
-});
-
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('python')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'python')`;
-
-db.query(query, (err, result) => {
-  if (err) throw err;
-});
-
-var query = `INSERT INTO tags(tag) SELECT *
-              FROM (SELECT ('Mysql')) AS tmp
-              WHERE NOT EXISTS 
-              (SELECT * FROM tags WHERE tags.tag = 'Mysql')`;
-
-db.query(query, (err, result) => {
-  if (err) throw err;
-});

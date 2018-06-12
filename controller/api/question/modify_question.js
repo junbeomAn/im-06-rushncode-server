@@ -15,8 +15,8 @@ const updateQuestion = Promise.promisify(require("../../../model/update_question
 const modifyQuestion = (req, res) => {
   let target = {};
   target.questionID = req.body.questionID;
-  target.title = req.body.title;
-  target.body = req.body.body;
+  target.title = JSON.stringify(req.body.title);
+  target.body = JSON.stringify(req.body.body);
   target.reward = req.body.reward;
 
 

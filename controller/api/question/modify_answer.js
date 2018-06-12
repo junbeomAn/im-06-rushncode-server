@@ -14,7 +14,7 @@ const checkAnswer = Promise.promisify(require("../../../model/check_answer"));
 const modifyAnswer = (req, res) => {
   let target = {};
   target.answerID = req.body.answerID;
-  target.body = req.body.body;
+  target.body = JSON.stringify(req.body.body);
 
 
   updateAnswer(target).then(() => {
